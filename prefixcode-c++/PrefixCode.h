@@ -17,23 +17,16 @@ class PrefixCode {
 	public: string isOne(vector<string> words) {
 
 		ostringstream out;
-		int cur_min = 9999999 ;
-		bool match = false;
 		FOR(i,0,words.size())
 		{
 			FOR(j,0,words.size())
 			{
-				if(i!=j && (words[i].compare(0,words[j].length(),words[j]) == 0 ) && j < cur_min)
+				if(i!=j && (words[j].compare(0,words[i].length(),words[i]) == 0 ))
 				{
-					cur_min = j;
-					match = true;
+					out<<"No, "<<i;
+					return out.str();
 				}
 			}
-		}
-		if ( match )
-		{
-			out<<"No, "<<cur_min;
-			return out.str();
 		}
 		return "Yes";
 	}
