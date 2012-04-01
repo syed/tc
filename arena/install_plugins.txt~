@@ -1,8 +1,0 @@
-install code processor 
- * EntryPoint: codeprocessor.EntryPoint (case sensitive)
- * ClassPath: path of CodeProcessor.jar / TZTester.jar and fileedit.jar
- 
-inside code processor put 
-
-EditorEntry Point : fileedit.EntryPoint
-Preprocessor name : tangentz.TZTester

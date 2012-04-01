@@ -2,3 +2,7 @@ eclipse/
 eclipse-cpp-indigo-SR2-incubation-linux-gtk.tar.gz
 tests/
 */Debug
+*/.cproject
+*/.project
+*/.settings
+
