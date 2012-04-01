@@ -21,6 +21,19 @@ class FormatAmt {
 		out << dollars;
 		dollars_str = out.str();
 		//cout <<dollars_str;
+		/* Better solution
+		 * String s = "."+(cents<10?"0":"")+cents;
+   do{
+      s = (dollars%1000)+s;
+      if(dollars/1000 > 0){
+         if(dollars%1000<100)s = "0"+s;
+         if(dollars%1000<10)s = "0"+s;
+      }
+      dollars/=1000;
+      if(dollars>0)s=","+s;
+   }while(dollars>0);
+   return "$"+s;
+		 */
 		int count =0;
 		for(int i = dollars_str.length()-1 ; i>=0 ;i--)
 		{
