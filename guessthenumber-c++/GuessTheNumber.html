@@ -1,0 +1,25 @@
+<html><head><title>GuessTheNumber</title></head><body  ><table><tr><td colspan="2"><h3>Problem Statement</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><p>A popular guessing game is &quot;Guess the number&quot;, where one person selects a number in a known range, and another person tries to guess that number. After each guess, the first person reveals
+whether the guess was correct, too high or too low.</p>
+
+<p>Pretty soon one learns the best strategy, which is to guess the middle number among those not yet ruled out. If there is no single middle number, then there are two numbers to choose from. In that case, we choose the smallest of those numbers.</p>
+
+<p>The algorithm can be described like this:</p>
+
+<pre>
+Init lower and upper bound
+Repeat
+  x = (lower bound + upper bound)/2  (round down if necessary)
+  Make guess x
+  If x is too low, set lower bound to x+1
+  If x is too high, set upper bound to x-1
+Until x is correct
+</pre>
+
+<p>For instance, assume that the lower and upper bound initally are 1 and 9, respectively. The middle number in this range is 5. If this is &quot;too low&quot;, the new bounds become 6 and 9. This range contains four numbers, and there is thus no single middle number. The two numbers in the middle are 7 and 8, and the smallest of these is 7, so our next guess then becomes 7.</p>
+
+<p>Create a class GuessTheNumber which contains the method noGuesses which takes an int <b>upper</b>, the initial upper bound of the range (the inital lower bound is always 1), and an int <b>answer</b>, the number selected by the first person. The method should return an int representing the total number of guesses required for the second person to guess the correct number using the method described above.</p></td></tr><tr><td colspan="2"><h3>Definition</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td>Class:</td><td>GuessTheNumber</td></tr><tr><td>Method:</td><td>noGuesses</td></tr><tr><td>Parameters:</td><td>int, int</td></tr><tr><td>Returns:</td><td>int</td></tr><tr><td>Method signature:</td><td>int noGuesses(int upper, int answer)</td></tr><tr><td colspan="2">(be sure your method is public)</td></tr></table></td></tr><tr><td>&#160;&#160;&#160;&#160;</td></tr><tr><td></td></tr><tr><td colspan="2"><h3>Constraints</h3></td></tr><tr><td align="center" valign="top">-</td><td><b>upper</b> will be between 1 and 1000, inclusive.</td></tr><tr><td align="center" valign="top">-</td><td><b>answer</b> will be between 1 and <b>upper</b>, inclusive.</td></tr><tr><td colspan="2"><h3>Examples</h3></td></tr><tr><td align="center" nowrap="true">0)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>9</pre></td></tr><tr><td><pre>6</pre></td></tr></table></td></tr><tr><td><pre>Returns: 3</pre></td></tr><tr><td><table><tr><td colspan="2"><p>The first guess will be (1+9)/2=5, which is too low. The new lower bound then becomes 5+1=6.</p>
+<p>The second guess then becomes (6+9)/2=7, which is too high. The new upper bound then becomes 7-1=6.</p>
+<p>The third guess is then of course (6+6)/2)=6, which is correct. So, three guesses were required, and the method thus returns 3.</p>
+</td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">1)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>1000</pre></td></tr><tr><td><pre>750</pre></td></tr></table></td></tr><tr><td><pre>Returns: 2</pre></td></tr><tr><td><table><tr><td colspan="2">The first guess will be 500, the second guess 750.
+</td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">2)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>643</pre></td></tr><tr><td><pre>327</pre></td></tr></table></td></tr><tr><td><pre>Returns: 7</pre></td></tr><tr><td><table><tr><td colspan="2">The guesses are 322, 483, 402, 362, 342, 332 and finally 327, so the method returns 7.</td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">3)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>157</pre></td></tr><tr><td><pre>157</pre></td></tr></table></td></tr><tr><td><pre>Returns: 8</pre></td></tr><tr><td><table><tr><td colspan="2">Here the guesses are 79, 118, 138, 148, 153, 155, 156 and finally 157. The method thus returns 8.
+</td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">4)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>128</pre></td></tr><tr><td><pre>64</pre></td></tr></table></td></tr><tr><td><pre>Returns: 1</pre></td></tr><tr><td></td></tr></table></td></tr></table><p>This problem statement is the exclusive and proprietary property of TopCoder, Inc.  Any unauthorized use or reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited.  (c)2003, TopCoder, Inc.  All rights reserved.  </p></body></html>
