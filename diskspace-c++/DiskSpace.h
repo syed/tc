@@ -14,25 +14,25 @@ using namespace std;
 
 class DiskSpace {
 
-	public: int minDrives(vector<int> used, vector<int> total) {
-		int tot_used=0;
-		sort(total.begin(),total.end());
-		reverse(total.begin(),total.end());
+public:
+	int minDrives(vector<int> used, vector<int> total) {
+		int tot_used = 0;
+		sort(total.begin(), total.end());
+		reverse(total.begin(), total.end());
 
-/*		FOR(i,0,total.size())
-			cout<<"total: "<<total[i]<<endl;
-		FOR(i,0,total.size())
-			cout<<"used: "<<used[i]<<endl;
-*/
+		/*		FOR(i,0,total.size())
+		 cout<<"total: "<<total[i]<<endl;
+		 FOR(i,0,total.size())
+		 cout<<"used: "<<used[i]<<endl;
+		 */
 		int num_hd = 0;
 
 		FOR(i,0,used.size())
 			tot_used += used[i];
 
-		int i=0;
+		int i = 0;
 		//cout<< "Tot used : "<< tot_used<<endl;
-		while (tot_used >0 )
-		{
+		while (tot_used > 0) {
 			tot_used -= total[i];
 			//cout<< "Tot used : "<< tot_used<<endl;
 			num_hd++;
