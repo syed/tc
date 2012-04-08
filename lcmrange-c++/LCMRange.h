@@ -42,7 +42,6 @@ class LCMRange {
 						is_div = true;
 						list[j] /= primes[i];
 					}
-
 				}
 				if( is_div )
 					lcm *= primes[i];
