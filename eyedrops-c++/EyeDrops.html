@@ -1,0 +1,24 @@
+<html><head><title>EyeDrops</title></head><body  ><table><tr><td colspan="2"><h3>Problem Statement</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><i>Note to plugin users: There is an image in the problem examples. Please use the applet to view it.</i>
+<p>
+After laser surgery, I was instructed to put drops in my eyes 6 times a day,
+spacing them as far apart as possible.  Considering that I sleep for some
+period each day, it required some calculation to come up with an optimal
+schedule.  Recognizing that I get similar instructions every time I get 
+medication from the doctor, it became clear that a computer program was needed.
+</p><p>
+Create a class EyeDrops that contains a
+method closest that is given <b>sleepTime</b>, the number of hours that the patient
+sleeps each day, and <b>k</b>, the number of doses required each day. The method
+returns the number of minutes between the closest doses, when the schedule
+is chosen to make this period as large as possible. You should assume that the
+patient sleeps for the same continuous period each day.
+</p><p>
+The schedule that you choose will be applied for multiple days, so the period 
+between closest doses may be between doses on different days.
+</p>
+</td></tr><tr><td colspan="2"><h3>Definition</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td>Class:</td><td>EyeDrops</td></tr><tr><td>Method:</td><td>closest</td></tr><tr><td>Parameters:</td><td>int, int</td></tr><tr><td>Returns:</td><td>double</td></tr><tr><td>Method signature:</td><td>double closest(int sleepTime, int k)</td></tr><tr><td colspan="2">(be sure your method is public)</td></tr></table></td></tr><tr><td>&#160;&#160;&#160;&#160;</td></tr><tr><td></td></tr><tr><td colspan="2"><h3>Notes</h3></td></tr><tr><td align="center" valign="top">-</td><td>The returned value must have a relative error of less than 1.0E-9</td></tr><tr><td colspan="2"><h3>Constraints</h3></td></tr><tr><td align="center" valign="top">-</td><td><b>sleepTime</b> must be between 0 and 23 inclusive</td></tr><tr><td align="center" valign="top">-</td><td><b>k</b> must be between 1 and 50 inclusive</td></tr><tr><td colspan="2"><h3>Examples</h3></td></tr><tr><td align="center" nowrap="true">0)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>8</pre></td></tr><tr><td><pre>2</pre></td></tr></table></td></tr><tr><td><pre>Returns: 720.0</pre></td></tr><tr><td><table><tr><td colspan="2">You can take one dose when you wake up, and the next one 12 hours later.
+<img src="http://www.topcoder.com/contest/problem/EyeDrops/example0.gif"></img>
+   
+
+</td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">1)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>9</pre></td></tr><tr><td><pre>3</pre></td></tr></table></td></tr><tr><td><pre>Returns: 450.0</pre></td></tr><tr><td><table><tr><td colspan="2">Take your medicine when you wake up, when you go to sleep, and halfway
+in between.</td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">2)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>23</pre></td></tr><tr><td><pre>1</pre></td></tr></table></td></tr><tr><td><pre>Returns: 1440.0</pre></td></tr><tr><td></td></tr></table></td></tr><tr><td align="center" nowrap="true">3)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>9</pre></td></tr><tr><td><pre>8</pre></td></tr></table></td></tr><tr><td><pre>Returns: 128.57142857142856</pre></td></tr><tr><td></td></tr></table></td></tr></table><p>This problem statement is the exclusive and proprietary property of TopCoder, Inc.  Any unauthorized use or reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited.  (c)2003, TopCoder, Inc.  All rights reserved.  </p></body></html>
