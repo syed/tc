@@ -16,7 +16,18 @@ class BigBurger {
 
 	public: int maxWait(vector<int> arrival, vector<int> service) {
 		vector<int> get_time;
+		/* We actually don't need the extra vector
+		 * Better solution:
+		* int t = 0;
+		* int ret = 0;
+		* for(int i = 0; i < arrival.length; i++){
+		*   if(arrival[i] > t)t=arrival[i];
+		*   ret = Math.max(ret,t-arrival[i]);
+		*   t += service[i];
+		* }
+		*/
 
+		return ret;
 		get_time.push_back(arrival[0] + service[0]);
 		FOR(i,1,service.size())
 		{
