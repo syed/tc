@@ -16,8 +16,6 @@ using namespace std;
 
 #define IS_DIGIT(n) ((n==0)||(n==1))
 
-#define CHECK( p , q , len ) IS_DIGIT(NUM(q,len-1,len) - (NUM(p,len-1,len) + NUM(p,len,len)))
-
 class BinaryCode {
 
 	public: string my_decode(string p , string q)
