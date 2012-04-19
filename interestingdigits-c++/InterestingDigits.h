@@ -16,10 +16,7 @@ class InterestingDigits {
 
 	public:  int sum_of_digits(int num,int base)
 	{
-		ostringstream out;
 		int sum =0;
-		out<<num;
-
 		while ( num )
 		{
 			sum += num%base;
