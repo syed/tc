@@ -33,26 +33,24 @@ class Birthday {
 
 		cday += DAYS(cmonth);
 
-		cout<<"c month :"<<cmonth<<"c day: "<<cday<<endl;
+//		cout<<"c month :"<<cmonth<<"c day: "<<cday<<endl;
 		FOR(i,0,bdays.size())
 		{
 			day.push_back(int(bdays[i][4] - '0') + 10*(int(bdays[i][3] - '0')));
 			day[i] += DAYS((int(bdays[i][1] - '0') + 10*(int(bdays[i][0] - '0'))));
 		}
 
-		FOR(i,0,bdays.size())
-			cout<<"days : "<< day[i]<<" bday: "<< bdays[i]<<endl;
 again:
 		int min_day = 10000;
 		int mini = -1;
 		FOR(i,0,bdays.size())
 		{
-			cout<<"day :"<<day[i]<<"c day: "<<cday<<" i "<<i<<endl;
+//			cout<<"day :"<<day[i]<<"c day: "<<cday<<" i "<<i<<endl;
 			if ( (day[i]-cday) >= 0 && (day[i]-cday)< min_day )
 			{
 				min_day = day[i] - cday;
 				mini = i;
-				cout<<"Min i" << mini<<endl;
+//				cout<<"Min i" << mini<<endl;
 			}
 		}
 		if ( mini == -1 ) /* next year */
@@ -61,9 +59,9 @@ again:
 					day[i]+=365;
 			goto again;
 		}
-		cout<<"Min ii " << mini<<endl;
+//		cout<<"Min ii " << mini<<endl;
 
-	return bdays[mini].substr(0,5);
+		return bdays[mini].substr(0,5);
 	}
 
 };
