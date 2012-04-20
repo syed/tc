@@ -40,8 +40,6 @@ class BenfordsLaw {
 		}
 
 		return -1;
-
-
 	}
 
 };
