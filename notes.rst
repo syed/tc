@@ -37,3 +37,18 @@ use `min_element` and `max_element` ::
     int min = min_element( v.begin(),v.end())
     int max = max_element( v.begin(),v.end())
 
+##############
+Math Functions 
+##############
+
+Floor and Ceiling functions::
+    
+    #include<cmath>
+    
+    ceil(x);
+    floor(x);
+    // x can be int , float , double return value will 
+    // be same as the supplied arg
+
+   
+
