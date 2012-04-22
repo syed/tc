@@ -37,11 +37,8 @@ class StringTrain {
 					cpos = j;
 				}
 			}
-			//cout<<"Common string "<<common<<endl;
 			if ( cpos != -1 && common.size() < cars[i].size())
 				train = train + cars[i].substr(cpos);
-
-			//cout<<"Train "<<train<<endl;
 
 		}
 		map<char,int> seen;
@@ -52,7 +49,7 @@ class StringTrain {
 
 		for(int i=train.size()-1;i>=0;i--)
 		{
-			if ( seen[train[i]])
+			if (seen[train[i]])
 				continue;
 			ret2.push_back(train[i]);
 			seen[train[i]] = 1;
