@@ -1,0 +1,33 @@
+<html><head><title>BaseMystery</title></head><body  ><table><tr><td colspan="2"><h3>Problem Statement</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><p>
+The base of a number system is the number of different values each digit can represent.  For example, in base-2 (binary), there are 2 values each digit can take: 0 and 1.  In base-10, a digit can take values 0 through 9, inclusive.  Sometimes, it is difficult to determine which base a numerical expression is in.  An equation is valid for a given base if all of the digits are less than the base, and the numerical meaning of the equation is correct.  For example, &quot;1+1=10&quot; for base-10 satisfies the rule that the digits are all less than 10, but 1+1 = 2 in base-10, so the equation is not correct for base-10.
+</p>
+
+<p>
+If we assume that the characters '0'-'9' represent the values 0 - 9, and the characters 'A'-'J' represent the values 10 - 19, then we can represent numbers with a base up to 20.  The equation will be in the following form:
+</p>
+<pre>
+&lt;num&gt;+&lt;num&gt;=&lt;num&gt;
+</pre>
+<p>
+Where each &lt;num&gt; is a string consisting of characters '0'-'9' and 'A'-'J', which does not have any extra leading zeros, and is at most 5 digits long.
+</p>
+
+<p>
+Given an <b>equation</b> as defined above, you should return which bases in the range of 2 to 20, inclusive, are valid for the <b>equation</b>.  Return the bases in a vector &lt;int&gt; in ascending order.
+</p></td></tr><tr><td colspan="2"><h3>Definition</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td>Class:</td><td>BaseMystery</td></tr><tr><td>Method:</td><td>getBase</td></tr><tr><td>Parameters:</td><td>string</td></tr><tr><td>Returns:</td><td>vector &lt;int&gt;</td></tr><tr><td>Method signature:</td><td>vector &lt;int&gt; getBase(string equation)</td></tr><tr><td colspan="2">(be sure your method is public)</td></tr></table></td></tr><tr><td>&#160;&#160;&#160;&#160;</td></tr><tr><td></td></tr><tr><td colspan="2"><h3>Constraints</h3></td></tr><tr><td align="center" valign="top">-</td><td><b>equation</b> will be of the form &quot;&lt;num&gt;+&lt;num&gt;=&lt;num&gt;&quot;</td></tr><tr><td align="center" valign="top">-</td><td>Each &lt;num&gt; in <b>equation</b> will have between 1 and 5 characters, inclusive.</td></tr><tr><td align="center" valign="top">-</td><td>Each &lt;num&gt; in <b>equation</b> will consist only of numeric digits '0' - '9' and capital letters 'A' - 'J', and will not have extra leading zeros.</td></tr><tr><td colspan="2"><h3>Examples</h3></td></tr><tr><td align="center" nowrap="true">0)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>&quot;1+1=2&quot;</pre></td></tr></table></td></tr><tr><td><pre>Returns: 
+{ 3,  4,  5,  6,  7,  8,  9,  10,  11,  12,  13,  14,  15,  16,  17,  18,
+  19,  20 }</pre></td></tr><tr><td><table><tr><td colspan="2"><p>
+The only base which this does not work for is base-2.  In base 2, 2 is represented by &quot;10&quot;
+</p></td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">1)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>&quot;1+1=10&quot;</pre></td></tr></table></td></tr><tr><td><pre>Returns: { 2 }</pre></td></tr><tr><td><table><tr><td colspan="2"><p>
+The same equation valid for base 2.
+</p></td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">2)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>&quot;1+1=3&quot;</pre></td></tr></table></td></tr><tr><td><pre>Returns: { }</pre></td></tr><tr><td><table><tr><td colspan="2"><p>
+1+1 is never 3, no matter what base you are in.
+</p></td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">3)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>&quot;ABCD+211=B000&quot;</pre></td></tr></table></td></tr><tr><td><pre>Returns: { 14 }</pre></td></tr><tr><td><table><tr><td colspan="2"><p>
+In base-14, the digits are 0-9, A-D.  Adding one to the ones column yields 10 base-14, which carries over to make the 10's column a 'D'.  Adding 1 to that column yields 10 again, which carries and makes the 100's column a 'C'.  Adding 2 to C yields 10 again, which adds 1 to the 1000's column, resulting in B000.
+</p></td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">4)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>&quot;ABCD+322=B000&quot;</pre></td></tr></table></td></tr><tr><td><pre>Returns: { 15 }</pre></td></tr><tr><td><table><tr><td colspan="2"><p>
+For base-15, we have increased the number required to wrap to 0 by 1.
+</p></td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">5)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>&quot;1+0=1&quot;</pre></td></tr></table></td></tr><tr><td><pre>Returns: 
+{ 2,  3,  4,  5,  6,  7,  8,  9,  10,  11,  12,  13,  14,  15,  16,  17,
+  18,  19,  20 }</pre></td></tr><tr><td><table><tr><td colspan="2"><p>
+This is valid for all bases.
+</p></td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">6)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>&quot;GHIJ+1111=HJ00&quot;</pre></td></tr></table></td></tr><tr><td><pre>Returns: { 20 }</pre></td></tr><tr><td></td></tr></table></td></tr><tr><td align="center" nowrap="true">7)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>&quot;1234+8765=9999&quot;</pre></td></tr></table></td></tr><tr><td><pre>Returns: { 10,  11,  12,  13,  14,  15,  16,  17,  18,  19,  20 }</pre></td></tr><tr><td></td></tr></table></td></tr></table><p>This problem statement is the exclusive and proprietary property of TopCoder, Inc.  Any unauthorized use or reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited.  (c)2003, TopCoder, Inc.  All rights reserved.  </p></body></html>
