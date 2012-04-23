@@ -13,8 +13,10 @@ using namespace std;
 #define ISEQ(c) (c).begin(), (c).end()
 
 #define IS_LEAP_YEAR(y) ( (y%4 == 0) && (y%100 !=0|| y%400==0) )
+
 #define BOTH_LEAP_YEAR(a,b)  (IS_LEAP_YEAR(a) && IS_LEAP_YEAR(b))
 #define BOTH_NOT_LEAP_YEAR(a,b)  ((!IS_LEAP_YEAR(a)) && (!IS_LEAP_YEAR(b)))
+
 class CalendarRecycle {
 
 	public: int useAgain(int year) {
@@ -28,7 +30,6 @@ class CalendarRecycle {
 			else
 				diff+= 1;
 
-			//cout<<"Diff "<<diff<<endl;
 			if (diff  % 7 == 0 && (BOTH_LEAP_YEAR(i,year) || (BOTH_NOT_LEAP_YEAR(i,year))))
 				return i;
 		}
