@@ -40,7 +40,7 @@ class PartySeats {
 			return ret;
 		if ( boys.size() < 2)
 			return ret;
-		if ( boys.size() % 2 !=0)//no odd
+		if ( boys.size() % 2 !=0)//no odded
 			return ret;
 
 
