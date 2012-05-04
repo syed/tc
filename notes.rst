@@ -51,4 +51,45 @@ Floor and Ceiling functions::
     // be same as the supplied arg
 
    
+######################
+Custom sorting Sorting 
+######################
+
+
+Sorting of vectors can be done by using `sort` we can have custom sort function::
+
+    typedef struct team_order
+    {
+        int score;
+        int sixth;
+        char team;
+    }team_order_t;
+    
+    bool sort_score(team_order_t a, team_order_t b)
+    {
+        //here we are checking if a should come before b
+        // so if a.score is less it will come first
+
+        if ( a.score != b.score )
+            return a.score < b.score;
+    
+        //equala
+        if ( a.sixth != b.sixth )
+            return a.sixth < b.sixth;
+    
+        //both can be num or INF
+        return a.team < b.team;
+    }
+
+    //define it 
+    vector< team_order_t > scores; 
+
+    //add elements
+    scores.push_back(t1);
+    scores.push_back(t2);
+    scores.push_back(t3);
+
+    //call sort with custom function
+
+    sort(scores.begin(),scores.end(),&sort_score);
 
