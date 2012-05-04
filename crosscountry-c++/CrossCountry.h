@@ -12,7 +12,7 @@ using namespace std;
 #define FORIT(i,c) for (typeof((c).begin()) i = (c).begin(); i != (c).end(); i++)
 #define ISEQ(c) (c).begin(), (c).end()
 
-#define INF (1<<31)
+#define INF (1<<30)
 
 typedef struct team_order
 {
@@ -26,7 +26,7 @@ bool sort_score(team_order_t a, team_order_t b)
 	if ( a.score != b.score )
 		return a.score < b.score;
 
-	//equal
+	//equala
 	if ( a.sixth != b.sixth )
 		return a.sixth < b.sixth;
 

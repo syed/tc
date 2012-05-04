@@ -53,6 +53,12 @@ class CrossCountryTest {
 		string expected_ = "AB";
         assertEquals(4, expected_, solution.scoreMeet(numTeams, finishOrder));
     }
+    void testCase5() {
+		int numTeams = 3;
+		string finishOrder = "ABBABAACBBAB";
+		string expected_ = "BA";
+        assertEquals(5, expected_, solution.scoreMeet(numTeams, finishOrder));
+    }
 
     public: void runTest(int testCase) {
         switch (testCase) {
@@ -61,6 +67,7 @@ class CrossCountryTest {
             case (2): testCase2(); break;
             case (3): testCase3(); break;
             case (4): testCase4(); break;
+            case (5): testCase5(); break;
             default: cerr << "No such test case: " << testCase << endl; break;
         }
     }
@@ -68,7 +75,7 @@ class CrossCountryTest {
 };
 
 int main() {
-    for (int i = 0; i < 5; i++) {
+    for (int i = 0; i < 6; i++) {
         CrossCountryTest test;
         test.runTest(i);
     }
