@@ -1,0 +1,65 @@
+<html><head><title>BenfordsLaw</title></head><body  ><table><tr><td colspan="2"><h3>Problem Statement</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><p>
+Pick a random financial transaction from the ledger of a typical business
+and there is about a 30% chance that the first non-zero digit of the amount of 
+money involved is a 1.  This counter-intuitive fact is a result of <i>Benford's Law</i>,
+discovered by astronomer Simon Newcomb in the late 1800's and rediscovered
+by physicist Frank Benford in the early 1900's.  They found that real world
+data are not evenly distributed.  Instead, given a random number related to
+some natural or social phenomenon satisfying certain conditions, the probability 
+that the first non-zero digit of 
+the number is D is log<sub>10</sub>(1 + 1/D). 
+</p>
+
+<p>
+Increasingly, financial auditors are using Benford's Law to detect
+possible fraud.  Given a record of the financial transactions of a company,
+if some leading digit appears with a frequency that significantly differs
+from that predicted by Benford's Law, it is a signal that those transactions
+deserve a closer look.
+</p>
+
+<p>
+Create a class BenfordsLaw with a method questionableDigit
+that takes a vector &lt;int&gt; <b>transactions</b> and an int
+<b>threshold</b> and returns the smallest digit that appears as the
+first non-zero digit of numbers in <b>transactions</b> with a frequency
+that is at least <b>threshold</b> times more or less than its expected
+frequency (e.g., more than three times the expected frequency or less than
+one-third the expected frequency when <b>threshold</b>=3).  
+If no such digit exists, return -1.
+</p>
+
+<p>
+For example, consider the data 
+</p>
+<pre>
+    5236    7290     200    1907    3336
+    9182      17    4209    8746    7932
+    6375     909    2189    3977    2389
+    2500    1239    3448    6380    4812
+</pre>
+    The following chart gives the actual frequency of each leading digit,
+and its expected frequency according to Benford's law.
+<pre>
+    digit    | 1    2    3    4    5    6    7    8    9
+    ---------|---------------------------------------------
+    actual   | 3    4    3    2    1    2    2    1    2
+    expected | 6.02 3.52 2.50 1.94 1.58 1.34 1.16 1.02 0.92
+</pre>
+Assuming a <b>threshold</b> of 2, there are two digits
+that are questionable: the leading digit 1 appears less
+than half as often as expected and the leading digit 9
+appears more than twice as often as expected.  Since 1
+is smaller than 9, the answer is 1.
+
+<p>
+Note that, although the expected frequencies have been rounded to two decimal places 
+in the above table for the purposes of presentation, you should perform all such calculations
+without rounding.  Errors of up to 0.000001 in the expected frequencies will not affect the
+final answer.
+</p>
+
+</td></tr><tr><td colspan="2"><h3>Definition</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td>Class:</td><td>BenfordsLaw</td></tr><tr><td>Method:</td><td>questionableDigit</td></tr><tr><td>Parameters:</td><td>vector &lt;int&gt;, int</td></tr><tr><td>Returns:</td><td>int</td></tr><tr><td>Method signature:</td><td>int questionableDigit(vector &lt;int&gt; transactions, int threshold)</td></tr><tr><td colspan="2">(be sure your method is public)</td></tr></table></td></tr><tr><td>&#160;&#160;&#160;&#160;</td></tr><tr><td></td></tr><tr><td colspan="2"><h3>Notes</h3></td></tr><tr><td align="center" valign="top">-</td><td>In the formula for Benford's Law, log<sub>10</sub> means the base-10 logarithm.</td></tr><tr><td colspan="2"><h3>Constraints</h3></td></tr><tr><td align="center" valign="top">-</td><td><b>transactions</b> contains between 1 and 50 elements, inclusive.</td></tr><tr><td align="center" valign="top">-</td><td>Each element of <b>transactions</b> is between 1 and 999999999, inclusive.</td></tr><tr><td align="center" valign="top">-</td><td><b>threshold</b> is between 2 and 10, inclusive.</td></tr><tr><td align="center" valign="top">-</td><td>Errors of up to 0.000001 in calculating the expected frequencies will not affect the final answer.</td></tr><tr><td colspan="2"><h3>Examples</h3></td></tr><tr><td align="center" nowrap="true">0)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>{ 5236,7290,200,1907,3336,9182,17,4209,8746,7932,
+  6375,909,2189,3977,2389,2500,1239,3448,6380,4812 }</pre></td></tr><tr><td><pre>2</pre></td></tr></table></td></tr><tr><td><pre>Returns: 1</pre></td></tr><tr><td><table><tr><td colspan="2">The example above.</td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">1)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>{ 1,10,100,2,20,200,2000,3,30,300 }</pre></td></tr><tr><td><pre>2</pre></td></tr></table></td></tr><tr><td><pre>Returns: 2</pre></td></tr><tr><td><table><tr><td colspan="2">2 and 3 appear more than twice as often as expected, and 4 through 9 appear
+less than half as often as expected.  2 is the smallest of these digits.</td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">2)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>{ 9,87,765,6543,54321,43219,321987,21987,1987,345,234,123 }</pre></td></tr><tr><td><pre>2</pre></td></tr></table></td></tr><tr><td><pre>Returns: -1</pre></td></tr><tr><td></td></tr></table></td></tr><tr><td align="center" nowrap="true">3)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>{ 1,2,3,4,5,6,7,8,7,6,5,4,3,2,1 }</pre></td></tr><tr><td><pre>8</pre></td></tr></table></td></tr><tr><td><pre>Returns: 9</pre></td></tr><tr><td></td></tr></table></td></tr><tr><td align="center" nowrap="true">4)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>{ 987,234,1234,234873487,876,234562,17,
+  7575734,5555,4210,678234,3999,8123 }</pre></td></tr><tr><td><pre>3</pre></td></tr></table></td></tr><tr><td><pre>Returns: 8</pre></td></tr><tr><td></td></tr></table></td></tr></table><p>This problem statement is the exclusive and proprietary property of TopCoder, Inc.  Any unauthorized use or reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited.  (c)2003, TopCoder, Inc.  All rights reserved.  </p></body></html>

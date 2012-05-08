@@ -1,0 +1,29 @@
+<html><head><title>CalendarRecycle</title></head><body  ><table><tr><td colspan="2"><h3>Problem Statement</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><p>
+Jane is visiting your cubicle when she spies the Elvis calendar hanging on your wall.
+</p>
+<p>
+&quot;That's not right, is it?&quot; she asks rhetorically.
+</p>
+<p>
+Your Elvis calendar says that September 8 is a Sunday, but it's actually a Monday. Elvis Presley, the King of Rock 'n' Roll, is no liar. It's just that you bought the calendar last year. This is a 2002 calendar, whereas the current year is 2003. The dates no longer match the days of the week! But there will come a year when every date falls on the same day of the week as in 2002, and the King will reign again.
+</p>
+<p>
+Given an int representing a year between 2002 and 9999, return the closest future year with which it shares a calendar. Jane reminds you that there are 30 days in April, June, September, and November. The remaining months, with the exception of February, have 31 days. February has 29 days in leap years, and 28 days otherwise. Leap years are divisible by four, and not divisible by 100 unless they are also divisible by 400. For example, 2004 and 2400 are leap years, but 2003 and 2100 are not. Jane also points out that there are only 14 possible calendars.
+</p></td></tr><tr><td colspan="2"><h3>Definition</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td>Class:</td><td>CalendarRecycle</td></tr><tr><td>Method:</td><td>useAgain</td></tr><tr><td>Parameters:</td><td>int</td></tr><tr><td>Returns:</td><td>int</td></tr><tr><td>Method signature:</td><td>int useAgain(int year)</td></tr><tr><td colspan="2">(be sure your method is public)</td></tr></table></td></tr><tr><td>&#160;&#160;&#160;&#160;</td></tr><tr><td></td></tr><tr><td colspan="2"><h3>Constraints</h3></td></tr><tr><td align="center" valign="top">-</td><td><b>year</b> is between 2002 and 9999, inclusive</td></tr><tr><td colspan="2"><h3>Examples</h3></td></tr><tr><td align="center" nowrap="true">0)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>2002</pre></td></tr></table></td></tr><tr><td><pre>Returns: 2013</pre></td></tr><tr><td><table><tr><td colspan="2">Your 2002 Elvis calendar will be valid again in 2013.<br></br>
+The following table shows the day of the week that September 8th falls on each year from 2002 to 2013.
+<pre>
+Year | Day
+-----+-----
+2002 | Sunday
+2003 | Monday
+2004 | Wednesday
+2005 | Thursday
+2006 | Friday
+2007 | Saturday
+2008 | Monday
+2009 | Tuesday
+2010 | Wednesday
+2011 | Thursday
+2012 | Saturday
+2013 | Sunday
+</pre></td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">1)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>2013</pre></td></tr></table></td></tr><tr><td><pre>Returns: 2019</pre></td></tr><tr><td><table><tr><td colspan="2">After 2013, your 2002 Elvis calendar will next be valid in 2019.</td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">2)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>2008</pre></td></tr></table></td></tr><tr><td><pre>Returns: 2036</pre></td></tr><tr><td></td></tr></table></td></tr><tr><td align="center" nowrap="true">3)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>9999</pre></td></tr></table></td></tr><tr><td><pre>Returns: 10010</pre></td></tr><tr><td></td></tr></table></td></tr><tr><td align="center" nowrap="true">4)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>2525</pre></td></tr></table></td></tr><tr><td><pre>Returns: 2531</pre></td></tr><tr><td></td></tr></table></td></tr></table><p>This problem statement is the exclusive and proprietary property of TopCoder, Inc.  Any unauthorized use or reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited.  (c)2003, TopCoder, Inc.  All rights reserved.  </p></body></html>

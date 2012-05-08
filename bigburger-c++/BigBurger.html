@@ -1,0 +1,32 @@
+<html><head><title>BigBurger</title></head><body  ><table><tr><td colspan="2"><h3>Problem Statement</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td>BigBurger Inc. wants to see if having a single person at the counter both to
+take orders and to serve them is feasible.  At each BigBurger, customers will 
+arrive and get in line. When they get to the head of the line they will place
+their order, which will be assembled and served to them.  Then they will leave
+the BigBurger and the next person in line will be able to order.
+<p>
+We need to know how long a customer may be forced to wait before he or she can
+place an order.  Given a script that lists each customer for a typical day,
+we want to calculate the maximum customer waiting time.  Each customer in the
+script is characterized by an arrival time (measured in minutes after the store
+opened) and a service duration (the number of minutes between ordering and
+getting the food). 
+</p><p>
+Create a class BigBurger that contains method maxWait that is given a vector &lt;int&gt;
+<b>arrival</b> and a vector &lt;int&gt; <b>service</b> describing all the customers and returns the
+maximum time spent by a customer between arriving and placing the order. Corresponding
+elements of <b>arrival</b> and <b>service</b> refer to the same customer, and they are
+given in the order in which they arrive at the store (<b>arrival</b> is in non-descending
+order).
+</p><p>
+If multiple customers arrive at the same time they will all join the line at the
+same time, with the ones listed earlier ahead of ones appearing later in the list.
+</p>
+</td></tr><tr><td colspan="2"><h3>Definition</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td>Class:</td><td>BigBurger</td></tr><tr><td>Method:</td><td>maxWait</td></tr><tr><td>Parameters:</td><td>vector &lt;int&gt;, vector &lt;int&gt;</td></tr><tr><td>Returns:</td><td>int</td></tr><tr><td>Method signature:</td><td>int maxWait(vector &lt;int&gt; arrival, vector &lt;int&gt; service)</td></tr><tr><td colspan="2">(be sure your method is public)</td></tr></table></td></tr><tr><td>&#160;&#160;&#160;&#160;</td></tr><tr><td></td></tr><tr><td colspan="2"><h3>Constraints</h3></td></tr><tr><td align="center" valign="top">-</td><td><b>arrival</b> will contain between 1 and 50 elements inclusive</td></tr><tr><td align="center" valign="top">-</td><td><b>service</b> will contain the same number of elements as <b>arrival</b></td></tr><tr><td align="center" valign="top">-</td><td>the elements of <b>arrival</b> will be in non-decreasing order</td></tr><tr><td align="center" valign="top">-</td><td>each element of <b>arrival</b> will be between 1 and 720 inclusive</td></tr><tr><td align="center" valign="top">-</td><td>each element of <b>service</b> will be between 1 and 15 inclusive</td></tr><tr><td colspan="2"><h3>Examples</h3></td></tr><tr><td align="center" nowrap="true">0)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>{3,3,9}</pre></td></tr><tr><td><pre>{2,15,14}</pre></td></tr></table></td></tr><tr><td><pre>Returns: 11</pre></td></tr><tr><td><table><tr><td colspan="2">
+   Two customers arrive at time 3. The first one waits 0 time, orders, 
+and is  served after 2 minutes, leaving at time 5. The second one then
+orders and is served at time 20.  Meanwhile a customer arrives at
+time 9 and waits until the second customer leaves.  This last customer 
+then orders at time 20, and is served and leaves at time 20+14 = 34.  
+The first customer waited 0 minutes, the second waited 2 minutes (from 
+time 3 to time 5), and the last customer waited 11 minutes (from 
+time 9 to time 20).</td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">1)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>{182}</pre></td></tr><tr><td><pre>{11}</pre></td></tr></table></td></tr><tr><td><pre>Returns: 0</pre></td></tr><tr><td><table><tr><td colspan="2">The first customer never needs to wait.</td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">2)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>{2,10,11}</pre></td></tr><tr><td><pre>{3,4,3}</pre></td></tr></table></td></tr><tr><td><pre>Returns: 3</pre></td></tr><tr><td><table><tr><td colspan="2">The third customer needs to wait from time 11 to time 14. Neither of the other customers needs to wait at all.</td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">3)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>{2,10,12}</pre></td></tr><tr><td><pre>{15,1,15}</pre></td></tr></table></td></tr><tr><td><pre>Returns: 7</pre></td></tr><tr><td><table><tr><td colspan="2">The second customer waits the longest.</td></tr></table></td></tr></table></td></tr></table><p>This problem statement is the exclusive and proprietary property of TopCoder, Inc.  Any unauthorized use or reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited.  (c)2003, TopCoder, Inc.  All rights reserved.  </p></body></html>

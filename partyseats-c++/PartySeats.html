@@ -1,0 +1,39 @@
+<html><head><title>PartySeats</title></head><body  ><table><tr><td colspan="2"><h3>Problem Statement</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td>It is time to arrange the seating around a circular table for a party.  We
+want to alternate boys and girls around the table.  We have a list of all
+the attendees and their genders. Each attendee is specified by a string that
+consists of the name, followed by one space, followed by either &quot;boy&quot; or &quot;girl&quot;.
+<p>
+In addition to the attendees, we need to seat 
+the HOST (a boy) and the HOSTESS (a girl) with the HOSTESS directly across from
+the HOST. That means that half the attendees should be on the HOST's left, and half on his right.  
+</p><p>
+Create a class PartySeats that contains a method seating that is given a 
+vector &lt;string&gt; <b>attendees</b> that lists all the attendees and their genders. The method
+returns a vector &lt;string&gt; that gives the seating plan, starting with &quot;HOST&quot; and proceeding
+clockwise around the table, including all the attendees and the HOSTESS. 
+</p><p>
+If there is more than one possible seating plan,
+return the one that comes first lexicographically. &quot;First lexicographically&quot; means that each successive element in the return should be chosen to be the earliest alphabetically that is consistent with a legal seating plan. If there is no legal seating
+plan, the return should contain 0 elements.
+</p>
+</td></tr><tr><td colspan="2"><h3>Definition</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td>Class:</td><td>PartySeats</td></tr><tr><td>Method:</td><td>seating</td></tr><tr><td>Parameters:</td><td>vector &lt;string&gt;</td></tr><tr><td>Returns:</td><td>vector &lt;string&gt;</td></tr><tr><td>Method signature:</td><td>vector &lt;string&gt; seating(vector &lt;string&gt; attendees)</td></tr><tr><td colspan="2">(be sure your method is public)</td></tr></table></td></tr><tr><td>&#160;&#160;&#160;&#160;</td></tr><tr><td></td></tr><tr><td colspan="2"><h3>Constraints</h3></td></tr><tr><td align="center" valign="top">-</td><td><b>attendees</b> will contain between 1 and 50 elements inclusive</td></tr><tr><td align="center" valign="top">-</td><td>each element of <b>attendees</b> will consists of a name followed by a single space followed by either &quot;boy&quot; or &quot;girl&quot;. There will be no leading or trailing spaces.</td></tr><tr><td align="center" valign="top">-</td><td>each name will contain between 1 and 20 characters inclusive</td></tr><tr><td align="center" valign="top">-</td><td>each name will contain only uppercase letters 'A'-'Z'</td></tr><tr><td align="center" valign="top">-</td><td>no name will be &quot;HOST&quot; or &quot;HOSTESS&quot;</td></tr><tr><td colspan="2"><h3>Examples</h3></td></tr><tr><td align="center" nowrap="true">0)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>{&quot;BOB boy&quot;,&quot;SAM girl&quot;,&quot;DAVE boy&quot;,&quot;JO girl&quot;}</pre></td></tr></table></td></tr><tr><td><pre>Returns: { &quot;HOST&quot;,  &quot;JO&quot;,  &quot;BOB&quot;,  &quot;HOSTESS&quot;,  &quot;DAVE&quot;,  &quot;SAM&quot; }</pre></td></tr><tr><td><table><tr><td colspan="2">   A girl must follow the HOST, and JO comes earliest lexicographically. Then comes
+   a boy, and BOB is the earliest lexicographically. HOSTESS must come next so 
+   she can be opposite the HOST and then DAVE and SAM must follow in that order
+   to honor the alternating gender requirement.
+
+</td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">1)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>{&quot;JOHN boy&quot;}</pre></td></tr></table></td></tr><tr><td><pre>Returns: { }</pre></td></tr><tr><td><table><tr><td colspan="2">
+   There are more boys than girls so we cannot alternate.
+ </td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">2)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>{&quot;JOHN boy&quot;,&quot;CARLA girl&quot;}</pre></td></tr></table></td></tr><tr><td><pre>Returns: { }</pre></td></tr><tr><td><table><tr><td colspan="2">
+   There is no way to alternate gender and also have the HOST sit directly
+   across from the HOSTESS</td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">3)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>{&quot;BOB boy&quot;,&quot;SUZIE girl&quot;,&quot;DAVE boy&quot;,&quot;JO girl&quot;,
+&quot;AL boy&quot;,&quot;BOB boy&quot;,&quot;CARLA girl&quot;,&quot;DEBBIE girl&quot;}</pre></td></tr></table></td></tr><tr><td><pre>Returns: 
+{ &quot;HOST&quot;,
+  &quot;CARLA&quot;,
+  &quot;AL&quot;,
+  &quot;DEBBIE&quot;,
+  &quot;BOB&quot;,
+  &quot;HOSTESS&quot;,
+  &quot;BOB&quot;,
+  &quot;JO&quot;,
+  &quot;DAVE&quot;,
+  &quot;SUZIE&quot; }</pre></td></tr><tr><td></td></tr></table></td></tr></table><p>This problem statement is the exclusive and proprietary property of TopCoder, Inc.  Any unauthorized use or reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited.  (c)2003, TopCoder, Inc.  All rights reserved.  </p></body></html>
