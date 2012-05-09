@@ -12,6 +12,60 @@ using namespace std;
 #define FORIT(i,c) for (typeof((c).begin()) i = (c).begin(); i != (c).end(); i++)
 #define ISEQ(c) (c).begin(), (c).end()
 
+<<<<<<< HEAD
+#define N(s,i) ( i<0 ? 0 : s[i] - '0')
+class BinaryCode {
+
+	public: vector<string> decode(string m) {
+		vector<string> ret;
+		string out;
+		out.push_back('0');
+		FOR(i,0,m.size()-1)
+		{
+			if (((N(m,i) - ( N(out,i-1) + N(out,i))) == 0 )|| ((N(m,i) - ( N(out,i-1) + N(out,i))) == 1 ))
+			{
+				out.push_back((N(m,i) - ( N(out,i-1) + N(out,i))) + '0');
+			}
+			else
+			{
+				out.clear();
+				out+="NONE";
+				break;
+			}
+		}
+		//verify
+		int sz = m.size()-1;
+		if ( N(m,sz) != N(out,sz-1) + N(out,sz) )
+		{
+			out.clear();
+			out+="NONE";
+		}
+		ret.push_back(out);
+		out.clear();
+		out.push_back('1');
+		FOR(i,0,m.size()-1)
+		{
+			if (((N(m,i) - ( N(out,i-1) + N(out,i))) == 0 )|| ((N(m,i) - ( N(out,i-1) + N(out,i))) == 1 ))
+			{
+				out.push_back((N(m,i) - ( N(out,i-1) + N(out,i))) + '0');
+			}
+			else
+			{
+				out.clear();
+				out+="NONE";
+				break;
+			}
+		}
+		if ( N(m,sz) != N(out,sz-1) + N(out,sz) )
+		{
+			out.clear();
+			out+="NONE";
+		}
+		ret.push_back(out);
+		return ret;
+	}
+
+=======
 #define NUM(c) (c - '0')
 
 #define IS_DIGIT(n) ((n==0)||(n==1))
@@ -57,4 +111,5 @@ class BinaryCode {
 		ret.push_back(my_decode(p,q));
 		return ret;
 	}
+>>>>>>> d9fe0dd53eb3740af5116af4969ce65a284b786a
 };

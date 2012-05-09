@@ -76,6 +76,8 @@ class BinaryCodeTest {
         assertEquals(5, expected_, solution.decode(message));
     }
 
+<<<<<<< HEAD
+=======
     void testCase6() {
 		string message = "0";
         string expected__[] = {"0", "NONE"};
@@ -97,6 +99,7 @@ class BinaryCodeTest {
            vector<string> expected_(expected__, expected__ + (sizeof(expected__) / sizeof(expected__[0])));
            assertEquals(8, expected_, solution.decode(message));
        }
+>>>>>>> d9fe0dd53eb3740af5116af4969ce65a284b786a
     public: void runTest(int testCase) {
         switch (testCase) {
             case (0): testCase0(); break;
@@ -105,10 +108,13 @@ class BinaryCodeTest {
             case (3): testCase3(); break;
             case (4): testCase4(); break;
             case (5): testCase5(); break;
+<<<<<<< HEAD
+=======
             case (6): testCase6(); break;
             case (7): testCase7(); break;
             case (8): testCase8(); break;
 
+>>>>>>> d9fe0dd53eb3740af5116af4969ce65a284b786a
             default: cerr << "No such test case: " << testCase << endl; break;
         }
     }
@@ -116,7 +122,11 @@ class BinaryCodeTest {
 };
 
 int main() {
+<<<<<<< HEAD
+    for (int i = 0; i < 6; i++) {
+=======
     for (int i = 0; i < 9; i++) {
+>>>>>>> d9fe0dd53eb3740af5116af4969ce65a284b786a
         BinaryCodeTest test;
         test.runTest(i);
     }
