@@ -1,0 +1,78 @@
+<html><head><title>BrickByBrick</title></head><body  ><table><tr><td colspan="2"><h3>Problem Statement</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><p>
+You are given a rectangular map in which each space is marked with one of three characters: 
+'.' (open), 'B' (a brick), or '#' (an indestructible block).
+Walls made of indestructible blocks surround the field on all sides, but are not shown on the map.  A ball is bouncing around this
+map, destroying bricks, and your task is determine how long it takes the ball to destroy all the bricks.
+</p>
+
+<p>
+The top left space of the map is always open, and this is where the ball begins.  More specifically, the ball begins at time 0
+in the middle of the top edge of this space (see the diagram in Example 0).  The ball is 
+traveling diagonally down and to the right at a speed of half a meter per second vertically, and half a meter per second 
+horizontally.  Each space is 1 meter square, so the ball crosses half a space vertically and half a space horizontally each
+second.
+</p>
+
+<p>
+Whenever the ball strikes the edge of an obstacle--either a brick or an indestructible block--it bounces off at an angle
+perpendicular to its incoming path.  The ball will never hit two obstacles simultaneously.  Whenever the ball bounces 
+off a brick, the brick is destroyed and removed from the map.
+</p> 
+
+<p>
+Your method should return the time at which the last brick is destroyed.  If one or more bricks will never be
+destroyed, return -1.
+</p></td></tr><tr><td colspan="2"><h3>Definition</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td>Class:</td><td>BrickByBrick</td></tr><tr><td>Method:</td><td>timeToClear</td></tr><tr><td>Parameters:</td><td>vector &lt;string&gt;</td></tr><tr><td>Returns:</td><td>int</td></tr><tr><td>Method signature:</td><td>int timeToClear(vector &lt;string&gt; map)</td></tr><tr><td colspan="2">(be sure your method is public)</td></tr></table></td></tr><tr><td>&#160;&#160;&#160;&#160;</td></tr><tr><td></td></tr><tr><td colspan="2"><h3>Constraints</h3></td></tr><tr><td align="center" valign="top">-</td><td><b>map</b> contains between 1 and 15 elements, inclusive.</td></tr><tr><td align="center" valign="top">-</td><td>All elements of <b>map</b> contain the same number of characters (between 1 and 15, inclusive).</td></tr><tr><td align="center" valign="top">-</td><td>All elements of <b>map</b> contain only the characters '.', 'B', and '#'.</td></tr><tr><td align="center" valign="top">-</td><td>The top left corner of <b>map</b> (that is, the first character of the first element) is '.'.</td></tr><tr><td align="center" valign="top">-</td><td><b>map</b> contains at least one 'B'. </td></tr><tr><td colspan="2"><h3>Examples</h3></td></tr><tr><td align="center" nowrap="true">0)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>{ &quot;.B&quot;,
+  &quot;BB&quot; }</pre></td></tr></table></td></tr><tr><td><pre>Returns: 6</pre></td></tr><tr><td><table><tr><td colspan="2">The following diagram illustrates the path of the ball.
+<pre>
+     __0________
+    | / \ |     |
+    |/   \|     |
+    3  .  1  B  |
+    |\   /|\    |
+    | \ / | \   |
+    |--2--|--6--|
+    |     |     |
+    |     |     |
+    |  B  |  B  |
+    |     |     |
+    |_____|_____|
+</pre>
+The ball begins at point 0, traveling down and to the right.  It bounces off the 
+first brick at time 1, and off the second brick at time 2.  At time 3, it bounces 
+off the left wall, and at time 4 it bounces off the upper wall at the same place 
+it started.  At time 6, the ball destroys the third and final brick, so the method 
+returns 6.</td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">1)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>{ &quot;.BB&quot;,
+  &quot;BBB&quot;,
+  &quot;BBB&quot; }</pre></td></tr></table></td></tr><tr><td><pre>Returns: -1</pre></td></tr><tr><td><table><tr><td colspan="2">The ball will never hit the brick in the bottom right corner.</td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">2)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>{ &quot;......B&quot;,
+  &quot;###.###&quot;,
+  &quot;B.....B&quot; }</pre></td></tr></table></td></tr><tr><td><pre>Returns: 35</pre></td></tr><tr><td></td></tr></table></td></tr><tr><td align="center" nowrap="true">3)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>{ &quot;..BBB...&quot;,
+  &quot;.#BB..#.&quot;,
+  &quot;B.#B.B..&quot;,
+  &quot;B.B.....&quot;,
+  &quot;##.B.B#.&quot;,
+  &quot;#BB.#.B.&quot;,
+  &quot;B..B.BB.&quot;,
+  &quot;#..BB..B&quot;,
+  &quot;.B....#.&quot; }</pre></td></tr></table></td></tr><tr><td><pre>Returns: -1</pre></td></tr><tr><td></td></tr></table></td></tr><tr><td align="center" nowrap="true">4)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>{ &quot;.BB..BBB.B...&quot;,
+  &quot;B.B...B..BB..&quot;,
+  &quot;#B...B#B.....&quot;,
+  &quot;B#B.B##...##B&quot;,
+  &quot;BB.B#.B##B.B#&quot;,
+  &quot;B.B#.BBB.BB#B&quot;,
+  &quot;B#BBB##.#B#B.&quot;,
+  &quot;B#BB.BBB#BB.#&quot; }</pre></td></tr></table></td></tr><tr><td><pre>Returns: 3912</pre></td></tr><tr><td></td></tr></table></td></tr><tr><td align="center" nowrap="true">5)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>{ &quot;.BBBBBBBBBBBBBB&quot;,
+  &quot;##############B&quot;,
+  &quot;BBBBBBBBBBBBBBB&quot;,
+  &quot;B##############&quot;,
+  &quot;BBBBBBBBBBBBBBB&quot;,
+  &quot;##############B&quot;,
+  &quot;BBBBBBBBBBBBBBB&quot;,
+  &quot;B##############&quot;,
+  &quot;BBBBBBBBBBBBBBB&quot;,
+  &quot;##############B&quot;,
+  &quot;BBBBBBBBBBBBBBB&quot;,
+  &quot;B##############&quot;,
+  &quot;BBBBBBBBBBBBBBB&quot;,
+  &quot;##############B&quot;,
+  &quot;BBBBBBBBBBBBBBB&quot; }</pre></td></tr></table></td></tr><tr><td><pre>Returns: 31753</pre></td></tr><tr><td></td></tr></table></td></tr></table><p>This problem statement is the exclusive and proprietary property of TopCoder, Inc.  Any unauthorized use or reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited.  (c)2003, TopCoder, Inc.  All rights reserved.  </p></body></html>
