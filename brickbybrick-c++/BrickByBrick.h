@@ -13,6 +13,22 @@ using namespace std;
 #define FORIT(i,c) for (typeof((c).begin()) i = (c).begin(); i != (c).end(); i++)
 #define ISEQ(c) (c).begin(), (c).end()
 
+void print_maze(vector<string>map,pair<int, int > pos)
+{
+	cout<<"--------------"<<endl;
+	FOR(i,0,map.size())
+	{
+		FOR(j,0,map[0].size())
+		{
+			if(i == pos.first/2 && j == pos.second/2)
+				cout<<"P ";
+			else
+				cout<<". ";
+		}
+		cout<<endl;
+	}
+}
+
 bool brick_exists(vector<string> map)
 {
 	FOR(i,0,map.size())
@@ -81,6 +97,7 @@ class BrickByBrick {
 		cout<<"height "<<height<<"width "<<width<<endl;
 		while(1)
 		{
+			print_maze(map,cur_pos);
 			dir = calculate_pos(cur_pos,dir,map);
 			int i,j;
 			i = cur_pos.first,j=cur_pos.second;
