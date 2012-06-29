@@ -1,0 +1,32 @@
+<html><head><title>HourGlass</title></head><body  ><table><tr><td colspan="2"><h3>Problem Statement</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><p>Before mechanical clocks were common, people used hourglasses to measure time. An hourglass has two sections connected with a thin passage, where sand trickles through. If all the sand is at the bottom section, you may flip the glass and the sand will start trickling from the top section to the bottom section. After some time (the duration of that specific hourglass) all sand will have reached the bottom section again.</p>
+
+<p>Having only one hourglass limits you to measuring times that are multiples of the duration of the hourglass, but with two hourglasses, one can measure many more times. For instance, if one hourglass has duration 5 minutes and the other 7 minutes, you can measure 9 minutes by the following procedure (at time 0, both hourglasses have all their sand at the bottom): Flip both hourglasses at time 0; after 5 minutes turn the 5-minute glass; after another 2 minutes (when the 7-minute glass is done) turn the 5 minute glass again, which will then run for 2 minutes, thus totalling 9 minutes.</p>
+
+<p>Given the duration of the two hourglasses, calculate the 10 shortest time periods you can measure with these two hourglasses using only the following rules:</p>
+
+<ul>
+<li>At time 0, both hourglasses have all their sand in one side.</li>
+<li>An hourglass may only be flipped at time 0, or precisely when one of the hourglasses have run out of sand.</li>
+<li>Measurable times include all times when an hourglass has just run out of sand.</li>
+</ul>
+
+<p>Create a class HourGlass containing the method measurable taking an int <b>glass1</b> and an int <b>glass2</b>, the duration of the hourglasses, and returns a vector &lt;int&gt; containing the 10 shortest positive measurable times. The return value should contain no duplicates and the times should be sorted in ascending order.</p>
+</td></tr><tr><td colspan="2"><h3>Definition</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td>Class:</td><td>HourGlass</td></tr><tr><td>Method:</td><td>measurable</td></tr><tr><td>Parameters:</td><td>int, int</td></tr><tr><td>Returns:</td><td>vector &lt;int&gt;</td></tr><tr><td>Method signature:</td><td>vector &lt;int&gt; measurable(int glass1, int glass2)</td></tr><tr><td colspan="2">(be sure your method is public)</td></tr></table></td></tr><tr><td>&#160;&#160;&#160;&#160;</td></tr><tr><td></td></tr><tr><td colspan="2"><h3>Notes</h3></td></tr><tr><td align="center" valign="top">-</td><td>You may not turn an hourglass on its side.</td></tr><tr><td colspan="2"><h3>Constraints</h3></td></tr><tr><td align="center" valign="top">-</td><td><b>glass1</b> will be between 1 and 50, inclusive.</td></tr><tr><td align="center" valign="top">-</td><td><b>glass2</b> will be between 1 and 50, inclusive.</td></tr><tr><td colspan="2"><h3>Examples</h3></td></tr><tr><td align="center" nowrap="true">0)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>5</pre></td></tr><tr><td><pre>7</pre></td></tr></table></td></tr><tr><td><pre>Returns: { 5,  7,  9,  10,  11,  12,  13,  14,  15,  16 }</pre></td></tr><tr><td><table><tr><td colspan="2"><p>
+5, 7, 10, 14 and 15 can of course be measured since these times are just multiples of single hourglasses, and 12 is the sum of the two hourglasses, so it's also easy to measure.
+</p>
+<p>
+9, 11 and 13 can be measured according to the following scheme:
+</p>
+<pre>
+Time   Sand    Action         Sand
+0      0  0    Flip both      7  5
+5      2  0    Flip 5-min     2  5
+7      0  3    Flip both      7  2
+9      5  0    Flip both      2  5
+11     0  3    Flip both      7  2
+13     5  0
+</pre>
+</td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">1)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>13</pre></td></tr><tr><td><pre>5</pre></td></tr></table></td></tr><tr><td><pre>Returns: { 5,  10,  13,  15,  16,  17,  18,  19,  20,  21 }</pre></td></tr><tr><td></td></tr></table></td></tr><tr><td align="center" nowrap="true">2)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>23</pre></td></tr><tr><td><pre>23</pre></td></tr></table></td></tr><tr><td><pre>Returns: { 23,  46,  69,  92,  115,  138,  161,  184,  207,  230 }</pre></td></tr><tr><td><table><tr><td colspan="2"><p>
+Since the hourglasses are identical, it's not possible to measure times other than those that are multiples of the duration of the hourglasses.
+</p>
+</td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">3)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>24</pre></td></tr><tr><td><pre>30</pre></td></tr></table></td></tr><tr><td><pre>Returns: { 24,  30,  36,  42,  48,  54,  60,  66,  72,  78 }</pre></td></tr><tr><td></td></tr></table></td></tr><tr><td align="center" nowrap="true">4)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>1</pre></td></tr><tr><td><pre>50</pre></td></tr></table></td></tr><tr><td><pre>Returns: { 1,  2,  3,  4,  5,  6,  7,  8,  9,  10 }</pre></td></tr><tr><td></td></tr></table></td></tr></table><p>This problem statement is the exclusive and proprietary property of TopCoder, Inc.  Any unauthorized use or reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited.  (c)2003, TopCoder, Inc.  All rights reserved.  </p></body></html>
