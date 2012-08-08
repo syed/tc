@@ -19,58 +19,73 @@ using namespace std;
 #define DOT_OP 1
 #define DOT_NUM 2
 #define OP 3
+#define ERROR 4
 
+#define IS_OP(c) ((c) == '+' || (c) == '-' || (c) == '*' || (c) == '/' )
+#define IS_NUM(c)  ((c) >= '0' && (c) <= '9')
 
 int validate(string s)
 {
 	int state=NUM;
 	int i=0;
 	int sz = s.size();
-	bool op_seen = false;
+
+	if ( ! (IS_NUM(s[0])))
+		return 0;
+	i++;
 	while(i<sz)
 	{
 		switch( state )
 		{
 		case NUM:
-			while( i<sz && s[i] >= '0' && s[i] <= '9' )
-				i++;
-			if ( i<sz )
+			if ( s[i] == '.')
 				state = DOT_OP;
+			else if (IS_OP(s[i]))
+				state = OP;
+			else
+				state = ERROR;
+			break;
+
+		case DOT_OP:
+			if ( s[i] == '.')
+				state= DOT_OP;
+			else if (IS_OP(s[i]))
+				state = OP;
+			else
+				state = ERROR;
 
 			break;
-		case DOT_OP:
-			while(i<sz && s[i] == '.')
-				i++;
-			if ( i<sz && ( s[i] == '+' || s[i] == '-' ||s[i] == '*' ||s[i] == '/' ))
-				state=OP;
+		case OP:
+			if ( s[i] == '.')
+				state = DOT_NUM;
+			else if ( IS_NUM(s[i]))
+				state = NUM;
 			else
-				return i;
+				state = ERROR;
 			break;
 
 		case DOT_NUM:
-			while(i<sz && s[i] == '.')
-				i++;
-			if ( i<sz && ( s[i] >= '0' && s[i] <= '9'))
-				state=NUM;
+			if ( s[i] == '.')
+				state= DOT_NUM;
+			else if (IS_NUM(s[i]))
+				state = NUM;
 			else
-				return i;
-			break;
-
-		case OP:
-			op_seen = true;
-			i++;
-			if ( i<sz && ! ( s[i] == '.' || ( s[i] >= '0' && s[i] <= '9' )))
-				return i;
-			if ( i<sz && s[i] == '.')
-				state = DOT_NUM;
-			else
-				state=NUM;
+				state = ERROR;
 
 			break;
+
+		case ERROR :
+			return i-1;
+
 		}
+		i++;
 	}
-	if ( ! op_seen)
-		return i;
+
+	if ( state == ERROR)
+		return sz-1;
+	else if ( state != NUM )
+		return sz;
+
 	return -1;
 }
 

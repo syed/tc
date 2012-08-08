@@ -50,7 +50,7 @@ class ProblemWritingTest {
     }
     void testCase5() {
 		string dotForm = "34";
-		string expected_ = "";
+		string expected_ = "dotForm is not in dot notation, check character 1.";
         assertEquals(5, expected_, solution.myCheckData(dotForm));
     }
 
