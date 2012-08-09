@@ -15,78 +15,41 @@ using namespace std;
 #define ISEQ(c) (c).begin(), (c).end()
 
 int brick_count,brick_time  ;
-void calulate_next_pos( vector<string>&map , pair<int,int> &pos , int &vx, int &vy )
+void calulate_next_pos( vector<string>&map , pair<int,int> &pos , int *vx, int *vy )
 {
 	int cx,cy,xx,yy;
 	char val;
 	int height = map.size();
 	int width = map[0].size();
-	pos.first += vx;
-	pos.second += vy;
+	int *dir;
+	pos.first += (*vx);
+	pos.second += (*vy);
 
 	cx = pos.first,cy=pos.second;
+	dir = (cx%2 == 0 ) ?  vx : vy;
 
-	if ( cx % 2 == 0 ) //check horizontal
-	{
 
-		if ( vx > 0 ) // check forward block
-		{
-			xx = (cy)/2, yy=cx/2;
-		}
-		else
-		{
-			// check behind block
-			xx = (cy-1)/2, yy = (cx-1)/2;
-		}
+	if ( *dir > 0 ) // check forward  or bottom block
+		xx = (cy)/2, yy=cx/2;
+	else			// check behind or top  block
+		xx = (cy-1)/2, yy = (cx-1)/2;
+
+
+	if ( xx<0 || yy<0 || xx>=height || yy>=width )
+		val = '#';
+	else
 		val = map[xx][yy];
 
-		//printf("X:(cx,cy) (%d,%d) | (vx,vy) (%d,%d) | (xx,yy) (%d,%d) , val %c \n",
-		//		cx,cy,vx,vy,xx,yy,val);
 
-		if ( val == 'B' || val == '#' || cx == 0 || cy == 0 || cx == width*2 || cy == height*2)
-		{
-			if ( val == 'B')
-			{
-				brick_count--;
-				brick_time = 0 ;
-				map[xx][yy] = '.';
-			}
-			vx *=(-1); // change direction
-		}
-	}
-	else if ( cy % 2 == 0 ) //check horizontal
+	if ( val == 'B' || val == '#' || cx == 0 || cy == 0 || cx == width*2 || cy == height*2)
+		(*dir) *=(-1); // change direction
+
+	if ( val == 'B') //remove brick
 	{
-		if ( vy > 0 ) // check bottom block
-		{
-			xx = cy/2, yy = cx/2;
-		}
-		else
-		{
-			// check top block
-			xx = (cy-1)/2 , yy = (cx-1)/2;
-		}
-		if ( xx<0 || yy<0 || xx>=height || yy>=width )
-			val = '#';
-		else
-			val = map[xx][yy];
-
-
-		//printf("Y:(cx,cy) (%d,%d) | (vx,vy) (%d,%d) | (xx,yy) (%d,%d) , val %c \n",
-		//		cx,cy,vx,vy,xx,yy,val);
-
-		if ( val == 'B' || val == '#' || cx == 0 || cy == 0 || cx == width*2 || cy == height*2)
-		{
-			if ( val == 'B')
-			{
-				brick_count--;
-				brick_time = 0;
-				map[xx][yy] = '.';
-			}
-
-			vy *=(-1); // change direction
-		}
+		brick_count--;
+		brick_time = 0 ;
+		map[xx][yy] = '.';
 	}
-
 }
 
 void print_maze(vector<string>map)
@@ -121,8 +84,8 @@ class BrickByBrick {
 		count_bricks(map);
 		while(1)
 		{
-			print_maze(map);
-			calulate_next_pos(map,cur_pos,vx,vy);
+			//print_maze(map);
+			calulate_next_pos(map,cur_pos,&vx,&vy);
 			time++;
 			brick_time++;
 			if ( brick_time > 4*height*width )
@@ -130,7 +93,6 @@ class BrickByBrick {
 				time=-1;
 				break;
 			}
-
 			if ( brick_count == 0 )
 				break;
 
