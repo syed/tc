@@ -1,0 +1,38 @@
+<html><head><title>MergeSort</title></head><body  ><table><tr><td colspan="2"><h3>Problem Statement</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td>MergeSort is a classical sorting algorithm following the divide-and-conquer paradigm. Sorting n elements, it has a worst-case
+complexity of O(n*log(n)), which is optimal for sorting algorithms based on comparisons.<br></br>
+<br></br>
+Basically, it sorts a list with more than one element the following way (a list containing only one element is always sorted):
+<ul>
+<li>1. divide the list into two sublists of about equal size (divide)</li>
+<li>2. sort each of the two sublists (conquer)</li>
+<li>3. merge the two sorted sublists into one sorted list (combine)</li>
+</ul>
+<br></br>
+A pro of MergeSort is that it is stable, i.e. elements with the same key value keep their relative order during sorting.
+A con is that it is not in-place since it needs additional space for temporarily storing elements.<br></br>
+<br></br>
+Given a vector &lt;int&gt; <b>numbers</b>, return the number of comparisons the MergeSort algorithm
+(as described in pseudocode below) makes in order to sort that list. In this context, a single comparison takes two numbers x, y
+(from the list to be sorted) and determines which of x &lt; y, x = y and x &gt; y holds.<br></br>
+<br></br>
+<pre>List mergeSort(List a)</pre>
+<ul>
+<li><pre>1. if size(a) &lt;= 1, return a</pre></li>
+<li><pre>2. split a into two sublists b and c</pre></li>
+<li><pre>   if size(a) = 2*k, b contains the first k elements of a, c the last k elements</pre></li>
+<li><pre>   if size(a) = 2*k+1, b contains the first k elements of a, c the last k+1 elements</pre></li>
+<li><pre>3. List sb = mergeSort(b)</pre></li>
+<li><pre>   List sc = mergeSort(c)</pre></li>
+<li><pre>4. return merge(sb, sc)</pre></li>
+</ul>
+<br></br>
+<pre>List merge(List b, List c)</pre>
+<ul>
+<li><pre>1. create an empty list a</pre></li>
+<li><pre>2. while both b and c are not empty, compare the first elements of b and c</pre></li>
+<li><pre>   first(b) &lt; first(c): remove the first element of b and append it to the end of a</pre></li>
+<li><pre>   first(b) &gt; first(c): remove the first element of c and append it to the end of a</pre></li>
+<li><pre>   first(b) = first(c): remove the first elements of b and c and append them to the end of a</pre></li>
+<li><pre>3. if either b or c is not empty, append that non-empty list to the end of a</pre></li>
+<li><pre>4. return a</pre></li>
+</ul></td></tr><tr><td colspan="2"><h3>Definition</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td>Class:</td><td>MergeSort</td></tr><tr><td>Method:</td><td>howManyComparisons</td></tr><tr><td>Parameters:</td><td>vector &lt;int&gt;</td></tr><tr><td>Returns:</td><td>int</td></tr><tr><td>Method signature:</td><td>int howManyComparisons(vector &lt;int&gt; numbers)</td></tr><tr><td colspan="2">(be sure your method is public)</td></tr></table></td></tr><tr><td>&#160;&#160;&#160;&#160;</td></tr><tr><td></td></tr><tr><td colspan="2"><h3>Notes</h3></td></tr><tr><td align="center" valign="top">-</td><td>Be sure to exactly follow the algorithm as described, as a different implementation of MergeSort might lead to a different number of comparisons.</td></tr><tr><td colspan="2"><h3>Constraints</h3></td></tr><tr><td align="center" valign="top">-</td><td><b>numbers</b> contains between 0 and 50 elements, inclusive.</td></tr><tr><td align="center" valign="top">-</td><td>Each element of <b>numbers</b> is an int in its 'natural' (signed 32-bit) range from -(2^31) to (2^31)-1.</td></tr><tr><td colspan="2"><h3>Examples</h3></td></tr><tr><td align="center" nowrap="true">0)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>{1, 2, 3, 4}</pre></td></tr></table></td></tr><tr><td><pre>Returns: 4</pre></td></tr><tr><td><table><tr><td colspan="2">{1, 2, 3, 4} is first split to {1, 2} and {3, 4}. {1, 2} is split to {1} and {2} and merging to {1, 2} takes one comparison. {3, 4} is split to {3} and {4} and merging to {3, 4} also takes one comparison. Merging {1, 2} and {3, 4} to {1, 2, 3, 4} takes two comparisons (first 1 is compared to 3 and then 2 is compared to 3). This makes a total of four comparisons.</td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">1)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>{2, 3, 2}</pre></td></tr></table></td></tr><tr><td><pre>Returns: 2</pre></td></tr><tr><td><table><tr><td colspan="2">{2, 3, 2} is split to {2} and {3, 2}. {3, 2} is split and then merged to {2, 3} making one comparison. {2} and {2, 3} are merged to {2, 2, 3} also making one comparison, which totals to two comparisons made.</td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">2)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>{-17}</pre></td></tr></table></td></tr><tr><td><pre>Returns: 0</pre></td></tr><tr><td></td></tr></table></td></tr><tr><td align="center" nowrap="true">3)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>{}</pre></td></tr></table></td></tr><tr><td><pre>Returns: 0</pre></td></tr><tr><td></td></tr></table></td></tr><tr><td align="center" nowrap="true">4)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>{-2000000000,2000000000,0,0,0,-2000000000,2000000000,0,0,0}</pre></td></tr></table></td></tr><tr><td><pre>Returns: 19</pre></td></tr><tr><td></td></tr></table></td></tr></table><p>This problem statement is the exclusive and proprietary property of TopCoder, Inc.  Any unauthorized use or reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited.  (c)2003, TopCoder, Inc.  All rights reserved.  </p></body></html>

@@ -76,7 +76,7 @@ class BrickByBrickTest {
 };
 
 int main() {
-    for (int i = 2; i < 3; i++) {
+    for (int i = 0; i < 6; i++) {
         BrickByBrickTest test;
         test.runTest(i);
     }
