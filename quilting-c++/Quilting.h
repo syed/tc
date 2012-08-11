@@ -20,7 +20,7 @@ using namespace std;
 
 int elen,clen,cdir;
 int total_count[50];
-int get_color(int x , int y , int (&spiral_arr)[300][300] , vector<string> clist,int length,int width)
+int get_color(int x , int y , int (&spiral_arr)[300][300] , vector<string> clist)
 {
 	int color_count[clist.size()];
 	int xcoord[] = { -1 , 0 , 1 } , ycoord[] = { -1 , 0 , 1 };
@@ -33,16 +33,12 @@ int get_color(int x , int y , int (&spiral_arr)[300][300] , vector<string> clist
 			if (x>=0 && y>=0 && x<300 && y< 300 && !(i == 1 && j == 1))
 			{
 				int val = spiral_arr[x+xcoord[i]][y+ycoord[j]];
-				//printf("x : %d , y : %d i : %d , j %d , val %d\n",x - (150-length/2)+xcoord[i],y - (150-width/2)+ycoord[j],i,j,val);
 				if ( val != -1)
 					color_count[val] ++;
 			}
 
-	/*FOR(i,0,clist.size())
-		printf("color count i %d val %d\n",i,color_count[i]);*/
+	int min = 9999,min_index=0;
 
-	int min = 9999;
-	int min_index=0,min_count=0;
 	FOR(i,0,clist.size())
 	{
 		if ( color_count[i] < min)
@@ -52,12 +48,10 @@ int get_color(int x , int y , int (&spiral_arr)[300][300] , vector<string> clist
 		}
 		else if ( color_count[i] == min)
 		{
-			if ( total_count[i] < total_count[min_index])
+			if ( total_count[i] < total_count[min_index]) //rule 3
 				min_index = i;
 		}
 	}
-
-	// more than one min index ? apply rule 2
 
 	total_count[min_index]++  ;
 	return min_index;
@@ -84,11 +78,9 @@ class Quilting {
 
 		while(count < length*width)
 		{
-			color_index = get_color(x,y,spiral_arr,colorList,length,width);
+			color_index = get_color(x,y,spiral_arr,colorList);
 			spiral_arr[x][y] = color_index;
 
-			//cout<<"color index "<<colorList[color_index]<<" ";
-			//printf("x : %d , y : %d elen %d clen %d\n",x - (150-length/2),y - (150-width/2),elen,clen);
 
 			x += dx[cdir] , y+= dy[cdir];
 			clen++;
@@ -104,13 +96,7 @@ class Quilting {
 			total_count[color_index]++;
 			count++;
 		}
-		/*FOR(i,0,length)
-		{
-			FOR(j,0,width)
-			  printf("%2d ",spiral_arr[150-length/2+i][150-width/2+j]);
-			cout<<endl;
-		}*/
+
 		return colorList[color_index];
 	}
-
 };
