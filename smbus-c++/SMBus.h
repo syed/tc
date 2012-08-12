@@ -65,7 +65,7 @@ class SMBus {
 
 				FOR(j,1,matches.size())
 					if ( curr.data[i] != matches[j].data[i] )
-						matches[j].matches=false; // remove the jth element
+						matches[j].matches=false; // mark the jth element
 
 			}
 			mst.erase(mst.begin()); //remove from list

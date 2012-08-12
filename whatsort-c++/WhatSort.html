@@ -1,0 +1,43 @@
+<html><head><title>WhatSort</title></head><body  ><table><tr><td colspan="2"><h3>Problem Statement</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td>We have a sorted list of customer information. Each customer has an age, a weight,
+and a name.  We want to determine the basis on which they were sorted.  We
+believe that the customers were sorted based on alphabetical order of names,  ascending order of
+ages, and descending order of weights. One of these fields was the primary field, 
+used to initially sort the customers. Then one of these fields was used as the
+secondary field to break ties between customers that were indistinguishable based
+on the primary field.  And finally the remaining field was used to break ties
+between customers that had the same values for their primary and secondary fields.
+<p>
+Create a class WhatSort that contains method sortType that is given a vector &lt;string&gt; <b>name</b>,
+a vector &lt;int&gt; <b>age</b>, and a vector &lt;int&gt; <b>wt</b> that gives the attributes of the customers. The first elements of <b>name</b>, <b>age</b>, and <b>wt</b> correspond to the first customer in the sorted list of customers, the
+second elements to the second customer, etc.
+Your method will return a string that tells what sort of sort was used:
+<ol><li>
+    NAW  -- name was the primary, age secondary, weight the final field</li><li>
+    NWA  -- name was the primary, weight secondary, age final</li><li>
+    ANW  -- age was primary, name was secondary, weight final</li><li>
+    AWN  -- age was primary, weight was secondary, name final</li><li>
+    WAN  -- weight primary, age secondary, name final</li><li>
+    WNA  -- weight primary, name secondary, age final</li><li>
+    IND  -- indeterminate: more than one of the above is possible</li><li>
+    NOT  -- none of the above sorting methods was used</li></ol>
+</p>
+
+</td></tr><tr><td colspan="2"><h3>Definition</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td>Class:</td><td>WhatSort</td></tr><tr><td>Method:</td><td>sortType</td></tr><tr><td>Parameters:</td><td>vector &lt;string&gt;, vector &lt;int&gt;, vector &lt;int&gt;</td></tr><tr><td>Returns:</td><td>string</td></tr><tr><td>Method signature:</td><td>string sortType(vector &lt;string&gt; name, vector &lt;int&gt; age, vector &lt;int&gt; wt)</td></tr><tr><td colspan="2">(be sure your method is public)</td></tr></table></td></tr><tr><td>&#160;&#160;&#160;&#160;</td></tr><tr><td></td></tr><tr><td colspan="2"><h3>Constraints</h3></td></tr><tr><td align="center" valign="top">-</td><td><b>name</b> will contain between 1 and 50 elements inclusive</td></tr><tr><td align="center" valign="top">-</td><td><b>age</b> and <b>wt</b> will contain the same number of elements as <b>name</b></td></tr><tr><td align="center" valign="top">-</td><td>each element in <b>name</b> will contain between 1 and 50 characters inclusive</td></tr><tr><td align="center" valign="top">-</td><td>each character in each element of <b>name</b> will contain only uppercase letters 'A'-'Z'</td></tr><tr><td align="center" valign="top">-</td><td>each element of <b>age</b> and <b>wt</b> will be between 1 and 300 inclusive</td></tr><tr><td colspan="2"><h3>Examples</h3></td></tr><tr><td align="center" nowrap="true">0)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>{&quot;BOB&quot;,&quot;BOB&quot;,&quot;DAVE&quot;,&quot;JOE&quot;}</pre></td></tr><tr><td><pre>{22, 35, 35, 30}</pre></td></tr><tr><td><pre> {122, 122, 195,  200}</pre></td></tr></table></td></tr><tr><td><pre>Returns: &quot;IND&quot;</pre></td></tr><tr><td><table><tr><td colspan="2">
+   The ages are not in ascending order and the weights are not in descending order
+   so the primary field must be name.  The tie between the 2 BOB's could have been
+   broken by increasing age, leaving the weight field as final. But it is also 
+   possible that the weight field was secondary, leaving the 2 BOB tie to be 
+   resolved by age.  So we cannot determine which of those two sorts was used.
+
+</td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">1)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>{&quot;BOB&quot;,&quot;BOB&quot;,&quot;DAVE&quot;,&quot;DAVE&quot;}</pre></td></tr><tr><td><pre>{22, 35, 35, 30}</pre></td></tr><tr><td><pre> {122, 122, 195,  200}</pre></td></tr></table></td></tr><tr><td><pre>Returns: &quot;NOT&quot;</pre></td></tr><tr><td><table><tr><td colspan="2">
+
+   The ages are not in ascending order and the weights are not in descending order
+   so the primary field must be name.  There is a tie between the 2 BOB's and
+   between the 2 DAVE's. If the secondary field were age, then the DAVE's would
+   have been placed in the other order. That is also true if weight were the
+   secondary field. So none of the sorts could have been used.
+</td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">2)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>{&quot;BOB&quot;,&quot;BOB&quot;,&quot;DAVE&quot;,&quot;DAVE&quot;}</pre></td></tr><tr><td><pre> {22, 35, 35, 30}</pre></td></tr><tr><td><pre>{122, 122, 195,  190}</pre></td></tr></table></td></tr><tr><td><pre>Returns: &quot;NWA&quot;</pre></td></tr><tr><td><table><tr><td colspan="2">
+   The ages are not in ascending order and the weights are not in descending order
+   so the primary field must be name.  Weight as secondary field properly orders
+   the 2 DAVE's and leaves the ordering of the 2 BOB's up to the final field.
+</td></tr></table></td></tr></table></td></tr></table><p>This problem statement is the exclusive and proprietary property of TopCoder, Inc.  Any unauthorized use or reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited.  (c)2003, TopCoder, Inc.  All rights reserved.  </p></body></html>
