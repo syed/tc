@@ -1,0 +1,65 @@
+<html><head><title>Quilting</title></head><body  ><table><tr><td colspan="2"><h3>Problem Statement</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td>A quilt is made by sewing square patches of different colors together in
+a pattern.  We are using a pattern that says to start with one patch, and then add patches starting with the patch above it and continuing by spiraling outward counterclockwise until we
+have the desired size. The picture below shows the order of the patches (a then b then c etc.)
+in crafting a quilt whose length(i.e. height) is 4 and whose width is 3. 
+<pre>
+          lkj    
+          cbi     
+          dah              
+          efg                           
+</pre><p>
+Define the neighbors of a newly added patch to be
+all the previous patches that touch the new patch (including those that
+just touch diagonally at a corner).  The rules for choosing the color of 
+the newly added patch are <ol><li>
+    1) choose a color that minimizes the number of neighbors of the same color</li><li>
+    2) choose a color that has been used least often by previous patches</li><li>
+    3) choose the earliest(lowest index) color in the <b>colorList</b></li></ol>
+
+Rule 2 is applied only to decide among colors that are tied after rule 1 has been applied. Rule 3 
+is applied only to decide among colors that are tied after the first two rules have been applied.
+</p><p>
+Create a class Quilting that contains a method lastPatch that returns the color
+of the last patch added to the quilt.  Its inputs are an int <b>length</b> and an int 
+<b>width</b> (the two dimensions of the finished quilt),  and 
+a vector &lt;string&gt; <b>colorList</b> giving the
+available colors.  <b>length</b> minus <b>width</b> will be 0 or 1,
+so it will always be possible to produce a quilt of the given size.
+</p>
+</td></tr><tr><td colspan="2"><h3>Definition</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td>Class:</td><td>Quilting</td></tr><tr><td>Method:</td><td>lastPatch</td></tr><tr><td>Parameters:</td><td>int, int, vector &lt;string&gt;</td></tr><tr><td>Returns:</td><td>string</td></tr><tr><td>Method signature:</td><td>string lastPatch(int length, int width, vector &lt;string&gt; colorList)</td></tr><tr><td colspan="2">(be sure your method is public)</td></tr></table></td></tr><tr><td>&#160;&#160;&#160;&#160;</td></tr><tr><td></td></tr><tr><td colspan="2"><h3>Constraints</h3></td></tr><tr><td align="center" valign="top">-</td><td><b>width</b> will be between 1 and 100 inclusive</td></tr><tr><td align="center" valign="top">-</td><td><b>length</b> will be between 1 and 100 inclusive</td></tr><tr><td align="center" valign="top">-</td><td><b>length</b> - <b>width</b> will be 0 or 1</td></tr><tr><td align="center" valign="top">-</td><td><b>colorList</b> will have between 1 and 10 elements inclusive</td></tr><tr><td align="center" valign="top">-</td><td>each element of <b>colorList</b> will have between 1 and 15 characters inclusive</td></tr><tr><td align="center" valign="top">-</td><td>each element of <b>colorList</b> will contain only uppercase letters 'A'-'Z'</td></tr><tr><td align="center" valign="top">-</td><td>each element of <b>colorList</b> will be distinct</td></tr><tr><td colspan="2"><h3>Examples</h3></td></tr><tr><td align="center" nowrap="true">0)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>3</pre></td></tr><tr><td><pre>2</pre></td></tr><tr><td><pre>{&quot;RED&quot;,&quot;BLUE&quot;,&quot;TAN&quot;}</pre></td></tr></table></td></tr><tr><td><pre>Returns: &quot;TAN&quot;</pre></td></tr><tr><td><table><tr><td colspan="2">
+<pre>  
+       TAN  BLUE
+       RED  RED 
+       BLUE TAN
+</pre>
+The layout above shows the finished quilt. It was created by starting at the position of the rightmost RED. (The color RED was chosen by rule 3). The BLUE above it was added next (RED was disqualified by rule 1, BLUE preferred over TAN by rule 3). Then TAN was chosen by rule 1, and then RED was chosen by rule 3. BLUE was chosen by rule 3 after RED was eliminated by rule 1. Finally the last patch was TAN by rule 1.
+
+</td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">1)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>4</pre></td></tr><tr><td><pre>3</pre></td></tr><tr><td><pre>{&quot;E&quot;,&quot;D&quot;,&quot;C&quot;,&quot;B&quot;,&quot;A&quot;}</pre></td></tr></table></td></tr><tr><td><pre>Returns: &quot;E&quot;</pre></td></tr><tr><td><table><tr><td colspan="2"><pre>  
+       E B E
+       C D A
+       B E B
+       A D C
+</pre>
+The layout above shows the finished quilt. It was created by starting at the position of E near the middle.(The color E was chosen by rule 3). The D above it was added next (E was disqualified by rule 1, the
+others were tied under rule 2, and D was preferred over the others by rule 3). The process continued until the final E in the upper left corner was chosen because B, C, and D were eliminated by rule 1, E and A were tied under rule 2 and E was preferred to A by rule 3.
+</td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">2)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>3</pre></td></tr><tr><td><pre>3</pre></td></tr><tr><td><pre>{&quot;A&quot;,&quot;B&quot;,&quot;C&quot;,&quot;D&quot;}</pre></td></tr></table></td></tr><tr><td><pre>Returns: &quot;C&quot;</pre></td></tr><tr><td><table><tr><td colspan="2">
+<pre>
+             C B C
+             D A A
+             B C D
+</pre>
+This quilt was constructed by starting at the position of the middle A and
+then adding the B patch above it.  The final patch was the C in the
+upper right corner.
+</td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">3)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>1</pre></td></tr><tr><td><pre>1</pre></td></tr><tr><td><pre>{&quot;RED&quot;,&quot;BLUE&quot;,&quot;YELLOW&quot;}</pre></td></tr></table></td></tr><tr><td><pre>Returns: &quot;RED&quot;</pre></td></tr><tr><td></td></tr></table></td></tr><tr><td align="center" nowrap="true">4)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>10</pre></td></tr><tr><td><pre>10</pre></td></tr><tr><td><pre>{&quot;X&quot;,&quot;Y&quot;,&quot;Z&quot;}</pre></td></tr></table></td></tr><tr><td><pre>Returns: &quot;Z&quot;</pre></td></tr><tr><td><table><tr><td colspan="2"><pre>
+  Z Y Z Y X Y X Z X Y
+  X X Z Y Z Y X Y X Z
+  Z Y Z X Z Y Z Y Z Y
+  X Z X Y X Y X Z X X
+  Y Z Y Z Z Y Z Y Y Y
+  Z X X X X X X Z X Z
+  Y Y Y Z Y Z Y Y Z Y
+  X X Z X Y X Z X X X
+  Y Z Y X Z X Y Z Y Y
+  Z X Y Z Y Z X Z X Z
+</pre></td></tr></table></td></tr></table></td></tr></table><p>This problem statement is the exclusive and proprietary property of TopCoder, Inc.  Any unauthorized use or reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited.  (c)2003, TopCoder, Inc.  All rights reserved.  </p></body></html>

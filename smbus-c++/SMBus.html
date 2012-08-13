@@ -1,0 +1,83 @@
+<html><head><title>SMBus</title></head><body  ><table><tr><td colspan="2"><h3>Problem Statement</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><p>
+On most modern PC systems, there is a 2-wire bus called the System Management Bus, or SMBus, which is based on the I<sup>2</sup>C protocol.  This bus is used to talk to multiple devices on the system such as temperature sensors, or batteries.  The most significant achievement of the I<sup>2</sup>C protocol is that it requires no more than 2 wires, and is not susceptible to collisions (unlike other hardware protocols, like ethernet).  Collisions occur when two masters (devices which transmit messages) try to transmit at the same time and the resulting data is invalid.  For I<sup>2</sup>C, the first bit transmitted by one master which is different than the bit transmitted by another master causes an &quot;arbitration&quot; to occur.  The data being transmitted on the bus is the logic and-ed value of all the data being transmitted by the masters.  Therefore, if one master is transmitting a '1' and another is transmitting a '0', the '0' will be transmitted and the '1' will not.  The master transmitting the '1' detects that it is not able to transmit, and stops transmitting.  The arbitration is not detected by the master transmitting the '0', or by the slave receiving the '0', so the message can continue without any collisions.
+</p>
+
+<p>
+Since '0' bits that occur earlier in messages always win, the master transmitting the lowest byte always wins arbitration.  For example, if one master was transmitting &quot;01234&quot;, and another master was transmitting &quot;01245&quot;, both masters would transmit the first three bytes, but the first master would win arbitration on the fourth data byte, since '3' is less than '4'.
+</p>
+
+<p>
+Multiple masters can start transmissions at the same time, but if a transmission has already started, another master cannot start one in the middle of the transmission.  Therefore, if one master is transmitting &quot;01234&quot;, and has already transmitted the '0', another master wanting to transmit &quot;1234&quot; cannot start its transmission until the first master is finished.
+</p>
+
+<p>
+The speed of transmission of each master is also allowed to vary.  The speed at which each byte is transferred is determined by the slowest transmitting master.  If a master loses arbitration of the bus, it continues to drive the clock signal (which determines the speed) for the remainder of the current byte, but then stops driving the clock for the rest of the transmission.  In other words, the speed that each byte is transmitted at is determined by the slowest master attempting to transmit during that byte, even if the master loses arbitration during that byte.
+</p>
+
+<p>
+Given the description of the I<sup>2</sup>C protocol above, you are to simulate multiple masters transmitting messages on the bus, and return how long it takes to transmit them.  You will be given a vector &lt;string&gt; <b>messages</b>, where each element is a message to be transmitted by a master device, and the messages consist of numeric digits '0'-'9'.  You will also be given a vector &lt;int&gt; <b>times</b>, where each element is the number of milliseconds it takes for the corresponding master to transmit a byte.  The master transmitting element <i>i</i> of <b>messages</b> is described by element <i>i</i> of <b>times</b>.  Each master that loses arbitration will retry transmitting its message after the current message is finished.  Note that all masters try transmitting their messages at the very beginning of the simulation.
+</p></td></tr><tr><td colspan="2"><h3>Definition</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td>Class:</td><td>SMBus</td></tr><tr><td>Method:</td><td>transmitTime</td></tr><tr><td>Parameters:</td><td>vector &lt;string&gt;, vector &lt;int&gt;</td></tr><tr><td>Returns:</td><td>int</td></tr><tr><td>Method signature:</td><td>int transmitTime(vector &lt;string&gt; messages, vector &lt;int&gt; times)</td></tr><tr><td colspan="2">(be sure your method is public)</td></tr></table></td></tr><tr><td>&#160;&#160;&#160;&#160;</td></tr><tr><td></td></tr><tr><td colspan="2"><h3>Constraints</h3></td></tr><tr><td align="center" valign="top">-</td><td><b>messages</b> will contain between 1 and 50 elements, inclusive.</td></tr><tr><td align="center" valign="top">-</td><td>Each element of <b>messages</b> will contain between 1 and 50 characters, inclusive.</td></tr><tr><td align="center" valign="top">-</td><td>Each element of <b>messages</b> will consist only of numeric digits '0'-'9', inclusive.</td></tr><tr><td align="center" valign="top">-</td><td>No element of <b>messages</b> will be a prefix of, or be exactly the same as, any other element of <b>messages</b>.</td></tr><tr><td align="center" valign="top">-</td><td><b>times</b> will contain the same number of elements as <b>messages</b>.</td></tr><tr><td align="center" valign="top">-</td><td>Each element of <b>times</b> will be between 1 and 100, inclusive.</td></tr><tr><td colspan="2"><h3>Examples</h3></td></tr><tr><td align="center" nowrap="true">0)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>{&quot;123&quot;,&quot;124&quot;,&quot;134&quot;}</pre></td></tr><tr><td><pre>{1,2,3}</pre></td></tr></table></td></tr><tr><td><pre>Returns: 25</pre></td></tr><tr><td><table><tr><td colspan="2"><p>
+Here is a graph of the bytes that are transmitted, which masters are transmitting for each byte, and how long each byte takes to transmit.  '-' means the master is transmitting, and '+' means the master was driving clock, but lost arbitration:
+</p>
+<pre>
+Data:       123124134
+Master1:    ---
+Master2:    --+---
+Master3:    -+ -+ ---
+Time taken: 332332333
+</pre>
+
+<p>
+For the first message, all masters successfully transmit the first byte.  Since the slowest is 3 milliseconds, the first byte takes 3 milliseconds to transfer.  On the second byte, the third master is arbitrated out since the other two transmit a lower byte.  However, the third master still drives the clock for the byte, so it is transmitted at 3 milliseconds.  The third byte is transmitted by the first two masters, and even though the second master loses arbitration, it drives the clock at 2 milliseconds.  The total time for the first message is therefore 3+3+2 = 8 milliseconds long.
+</p>
+
+<p>
+At this point, the second and third master still haven't transmitted their messages.  The second message again takes 8 milliseconds because the third master is arbitrated out on the second byte.
+</p>
+
+<p>
+The final message is transmitted only by the third master, and therefore takes 9 milliseconds to transmit.  The total time for the entire sequence is 8+8+9=25 milliseconds.
+</p></td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">1)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>{&quot;012&quot;, &quot;1234&quot;, &quot;1233&quot;, &quot;1223&quot;, &quot;1123&quot;}</pre></td></tr><tr><td><pre>{4,1,5,2,9}</pre></td></tr></table></td></tr><tr><td><pre>Returns: 94</pre></td></tr><tr><td><table><tr><td colspan="2"><p>
+Again, here is a graph which displays the bytes transmitted, which masters are transmitting, and the resulting times for each byte.  '-' means the master is transmitting and '+' means the master is driving clock, but lost arbitration:
+</p>
+
+<pre>
+Data:       0121123122312331234
+Master1:    ---
+Master2:    +  -+  --+ ---+----
+Master3:    +  -+  --+ ----
+Master4:    +  -+  ----
+Master5:    +  ----
+Time taken: 9449999555255551111
+</pre></td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">2)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>{&quot;0002019289019101039663222896280025447&quot;,
+ &quot;00201873554718989597528841094293294387326&quot;,
+ &quot;010699029378761&quot;, &quot;0110118&quot;, &quot;011143279122561420&quot;,
+ &quot;001046384966198&quot;, &quot;00200570375817801109530240012&quot;,
+ &quot;0003163277589822&quot;, &quot;01100240744590150136673219652442108&quot;,
+ &quot;012033596872642679096489479354&quot;, &quot;0121059494098&quot;,
+ &quot;00001002303019117948961792176&quot;, &quot;00216399923558&quot;, &quot;02014&quot;,
+ &quot;00224999120803846121427603894967637446889670369&quot;,
+ &quot;01101009414735635151893037596051740080475886&quot;,
+ &quot;0000101211809647472761605153430927981533514&quot;,
+ &quot;176845042961739039392207791589&quot;,
+ &quot;02000047506929386333221966659552927385017901842706&quot;,
+ &quot;021001117450487502127241076595509511&quot;,
+ &quot;021010776262723557108100899515&quot;,
+ &quot;0210114830738951774606917781619656&quot;,
+ &quot;0211798433083855430&quot;, &quot;00000005842153604632996228135814&quot;,
+ &quot;0001000766929248550736138555144997170272757787&quot;,
+ &quot;0001010247593342056062432721557&quot;,
+ &quot;01100004828618452515832113396660046634951&quot;,
+ &quot;0132559984733529872911444204991646138116334788&quot;,
+ &quot;0224149857349431864906523152249992&quot;,
+ &quot;00001142929552573133212195441932219&quot;,
+ &quot;0011090498947092002457447355036811372647896489218&quot;,
+ &quot;000001275414757476198997466&quot;, &quot;00010014&quot;,
+ &quot;00111025861963467834393486017602553072649743&quot;,
+ &quot;000102085&quot;, &quot;00120882661783539&quot;,
+ &quot;01100018938145727291185020&quot;,
+ &quot;01100191373790478446634214244459341793&quot;, &quot;0001129060&quot;,
+ &quot;001111287431066271555393813846448&quot;,
+ &quot;011010160778408696098486370196313&quot;, &quot;0002125146381515395&quot;}</pre></td></tr><tr><td><pre>{42, 86, 47, 86, 32, 95, 2, 98, 17, 58, 31, 32, 85, 77,
+ 87, 61, 1, 20, 15, 80, 20, 95, 55, 87, 52, 14, 55, 68,
+ 2, 66, 67, 3, 28, 97, 100, 67, 65, 20, 28, 77, 93, 64}</pre></td></tr></table></td></tr><tr><td><pre>Returns: 71048</pre></td></tr><tr><td></td></tr></table></td></tr></table><p>This problem statement is the exclusive and proprietary property of TopCoder, Inc.  Any unauthorized use or reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited.  (c)2003, TopCoder, Inc.  All rights reserved.  </p></body></html>
