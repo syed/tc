@@ -69,13 +69,21 @@ class PickTeamTest {
         vector<string> expected_(expected__, expected__ + (sizeof(expected__) / sizeof(expected__[0])));
         assertEquals(3, expected_, solution.pickPeople(teamSize, people));
     }
-
+    void testCase4() {
+		int teamSize = 4;
+		string people_[] = { "YAX 0 -272 98 -974 -548", "VHT -272 0 -294 -844 783", "CGNA 98 -294 0 131 -740", "UYTPP -974 -844 131 0 -125", "GVTWWJ -548 783 -740 -125 0"};
+        vector<string> people(people_, people_ + (sizeof(people_) / sizeof(people_[0])));
+        string expected__[] = {"CGNA", "GVTWWJ", "VHT", "YAX"};
+        vector<string> expected_(expected__, expected__ + (sizeof(expected__) / sizeof(expected__[0])));
+        assertEquals(4, expected_, solution.pickPeople(teamSize, people));
+    }
     public: void runTest(int testCase) {
         switch (testCase) {
             case (0): testCase0(); break;
             case (1): testCase1(); break;
             case (2): testCase2(); break;
             case (3): testCase3(); break;
+            case (4): testCase4(); break;
             default: cerr << "No such test case: " << testCase << endl; break;
         }
     }
@@ -83,7 +91,7 @@ class PickTeamTest {
 };
 
 int main() {
-    for (int i = 0; i < 4; i++) {
+    for (int i = 0; i < 5; i++) {
         PickTeamTest test;
         test.runTest(i);
     }

@@ -14,7 +14,7 @@ using namespace std;
 #define FORIT(i,c) for (typeof((c).begin()) i = (c).begin(); i != (c).end(); i++)
 #define ISEQ(c) (c).begin(), (c).end()
 
-#define SZ(n) (n>=0?(n>9?2:1):(n>=-9?2:3))
+#define SZ(n) (n>=0?(n>9?(n>99?3:2):1):(n>=-99?((n>=-9)?2:3):4))
 int vec[30][30];
 int max_score = -999999;
 vector<int> res;
@@ -56,15 +56,18 @@ class PickTeam {
 			char name[50];
 			char *ip = (char *)people[i].c_str();
 			sscanf(ip,"%s",name);
+			//printf("%s ",name );
 			names.push_back(string(name));
 			ip += strlen(name) +1 ;
 			FOR(j,0,people.size())
 			{
 				int n;
 				sscanf(ip,"%d",&n);
+				//printf(" %d",n);
 				vec[i][j] = n;
 				ip += SZ(n) + 1;
 			}
+			printf("\n");
 		}
 		vector<int> v;
 		combinations(v,people.size(),teamSize,0,0);
@@ -73,6 +76,7 @@ class PickTeam {
 		FOR(i,1,res.size())
 			ret.push_back(names[res[i]-1]);
 
+		sort(ret.begin(),ret.end());
 		return ret;
 
 	}
