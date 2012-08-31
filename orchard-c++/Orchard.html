@@ -1,0 +1,59 @@
+<html><head><title>Orchard</title></head><body  ><table><tr><td colspan="2"><h3>Problem Statement</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td>
+
+My orchard is arranged in a square, with the rows and columns numbered 1, 2,
+..., n. I need software to choose the location where the
+next tree should be planted.
+<p>
+I want the next tree not to be interfered with by existing trees or by the
+activities of the neighboring landowners. Therefore, I want to
+choose the location for which the shortest orthogonal path that goes either to a tree or
+out of the orchard is as 
+long as possible.  By an orthogonal path I mean a sequence of steps that go 
+along rows and/or columns (not diagonally).  If there are several locations that have
+the same shortest orthogonal path, break the tie by choosing the smallest
+row number, and, if necessary, break any remaining tie by choosing the smallest
+column number.
+</p><p>
+The existing layout of the orchard is shown by a vector &lt;string&gt; <b>orchard</b> in which the
+elements correspond to rows 1, 2, ..., n. Within each element of <b>orchard</b>, the
+characters correspond to columns 1, 2, ..., n.  The character 'T' indicates an existing
+tree at that row and column, while  '-' indicates an available location.
+</p><p>
+Create a class Orchard that contains a
+method nextTree that is given a vector &lt;string&gt; <b>orchard</b> and returns
+ a vector &lt;int&gt; with two 
+elements giving the row and column of the chosen location. The first element of
+the return should give the row, and the second element should give the column.
+</p>
+</td></tr><tr><td colspan="2"><h3>Definition</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td>Class:</td><td>Orchard</td></tr><tr><td>Method:</td><td>nextTree</td></tr><tr><td>Parameters:</td><td>vector &lt;string&gt;</td></tr><tr><td>Returns:</td><td>vector &lt;int&gt;</td></tr><tr><td>Method signature:</td><td>vector &lt;int&gt; nextTree(vector &lt;string&gt; orchard)</td></tr><tr><td colspan="2">(be sure your method is public)</td></tr></table></td></tr><tr><td>&#160;&#160;&#160;&#160;</td></tr><tr><td></td></tr><tr><td colspan="2"><h3>Constraints</h3></td></tr><tr><td align="center" valign="top">-</td><td><b>orchard</b> contains n elements, where n is between 1 and 50 inclusive</td></tr><tr><td align="center" valign="top">-</td><td>each element of <b>orchard</b> contains exactly n characters</td></tr><tr><td align="center" valign="top">-</td><td>each element of <b>orchard</b> contains only the characters 'T' and '-'</td></tr><tr><td align="center" valign="top">-</td><td>at least one element of <b>orchard</b> contains a character '-'</td></tr><tr><td colspan="2"><h3>Examples</h3></td></tr><tr><td align="center" nowrap="true">0)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>{ &quot;----&quot; , &quot;T---&quot; , &quot;----&quot; , &quot;----&quot; }</pre></td></tr></table></td></tr><tr><td><pre>Returns: { 2,  3 }</pre></td></tr><tr><td><table><tr><td colspan="2"><pre>
+    ----  row 1
+    T---  row 2
+    ----  row 3
+    ----  row 4
+</pre>
+   The edge locations all have a path of length 1 out of the orchard. The four
+   central locations have a shortest path of 2 out of the orchard.  Among 
+   these four, the one in row 2 column 2 has a path of 1 to the
+tree.  Among the other 3 locations, the one in row 2 is preferred to 
+the ones in row 3.
+
+</td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">1)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>{&quot;---T--&quot;,&quot;------&quot;,&quot;------&quot;,&quot;----T-&quot;,&quot;------&quot;,&quot;------&quot;}</pre></td></tr></table></td></tr><tr><td><pre>Returns: { 3,  3 }</pre></td></tr><tr><td><table><tr><td colspan="2"><pre>
+    ---T--
+    ------
+    ------
+    ----T-
+    ------
+    ------
+ </pre>
+
+    The location at row 3, column 3 has a shortest orthogonal path of 3.  In fact
+    it has paths of length 3 to each of the 2 existing trees and also to the
+    outside of the orchard.</td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">2)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>{&quot;------------&quot;,&quot;------------&quot;,&quot;------------&quot;,&quot;------------&quot;,
+&quot;------------&quot;,&quot;------------&quot;,&quot;------------&quot;,&quot;------------&quot;,
+&quot;------------&quot;,&quot;------------&quot;,&quot;------------&quot;,&quot;------------&quot;}</pre></td></tr></table></td></tr><tr><td><pre>Returns: { 6,  6 }</pre></td></tr><tr><td></td></tr></table></td></tr><tr><td align="center" nowrap="true">3)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>{&quot;-T----T&quot;,
+ &quot;T---T--&quot;,
+ &quot;-----TT&quot;,
+ &quot;---TT--&quot;,
+ &quot;T-----T&quot;,
+ &quot;-------&quot;,
+ &quot;T-T--T-&quot;}</pre></td></tr></table></td></tr><tr><td><pre>Returns: { 2,  3 }</pre></td></tr><tr><td><table><tr><td colspan="2">The location at row 2, column 3 has a shortest path of length two both to the outside of the orchard and to several trees. </td></tr></table></td></tr></table></td></tr></table><p>This problem statement is the exclusive and proprietary property of TopCoder, Inc.  Any unauthorized use or reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited.  (c)2003, TopCoder, Inc.  All rights reserved.  </p></body></html>
