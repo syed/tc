@@ -1,0 +1,66 @@
+<html><head><title>Poetry</title></head><body  ><table><tr><td colspan="2"><h3>Problem Statement</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><p>Given a poem, determine its rhyme scheme.</p>
+
+<p>To simplify things, because English is such a fickle language, there are some constraints:</p>
+
+<p>A <i>legal word</i> is a sequence of lower or uppercase letters, containing at least one vowel, where a vowel is 'a', 'e', 'i', 'o', or 'u'.  Also, 'y' is considered a vowel if it is not at the start or end of a word. Words are delimited by spaces.</p>
+
+<p>Two words are considered rhyming if they have the same ending pattern (defined below). This comparison is case-insensitive (see Example 1.)</p>
+
+<p>An ending pattern is a substring of a word such that:</p>
+<ol>
+<li>The word ends with that substring,</li>
+<li>The substring contains exactly one contiguous string of vowels,</li>
+<li>The first letter of the substring is a vowel, and</li>
+<li>The substring must either be the whole string, or the letter immediately preceding the start of the substring must be a nonvowel.</li>
+</ol>
+
+<p>For example, the ending pattern of &quot;bought&quot; is &quot;ought&quot;, the ending pattern of &quot;spying&quot; would be &quot;ying&quot;, and the ending pattern of &quot;all&quot; would be &quot;all&quot;.  (Note that &quot;spy&quot; has no vowels, and thus is not a legal word.)</p>
+
+<p>Two lines rhyme if their corresponding last words rhyme, and a line is empty if it contains no words.</p>
+
+<p>The procedure for determinining rhyme scheme is as follows:  The first non-empty line in the poem should be labeled with the lowercase letter 'a'.  Every line that rhymes with that line should also be labeled with that letter.  The next unlabeled non-empty line should be labeled with the letter 'b', and any rhyming lines should also be labeled in this manner.  When you run out of lowercase letters, continue by using the uppercase letters 'A' to 'Z'.  Empty lines should be labeled with ' ' (the space character).</p>
+
+<p>The 0th character of the returned string should be the rhyme scheme label of the 0th line, the 1st character should be the label of the 1st line, and so on.  This means that the returned string will have the same number of characters as there are elements in <b>poem</b>.  Thus, given a vector &lt;string&gt; <b>poem</b>, then your method should return a string detailing the rhyme scheme.</p></td></tr><tr><td colspan="2"><h3>Definition</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td>Class:</td><td>Poetry</td></tr><tr><td>Method:</td><td>rhymeScheme</td></tr><tr><td>Parameters:</td><td>vector &lt;string&gt;</td></tr><tr><td>Returns:</td><td>string</td></tr><tr><td>Method signature:</td><td>string rhymeScheme(vector &lt;string&gt; poem)</td></tr><tr><td colspan="2">(be sure your method is public)</td></tr></table></td></tr><tr><td>&#160;&#160;&#160;&#160;</td></tr><tr><td></td></tr><tr><td colspan="2"><h3>Notes</h3></td></tr><tr><td align="center" valign="top">-</td><td>If there is a blank line in the poem, there must be a corresponding space in the output.  A blank line is one with no words. (See Example 1.)</td></tr><tr><td colspan="2"><h3>Constraints</h3></td></tr><tr><td align="center" valign="top">-</td><td><b>poem</b> will have between 1 and 50 elements, inclusive.</td></tr><tr><td align="center" valign="top">-</td><td>each element of <b>poem</b> will contain between 0 and 50 characters, inclusive.</td></tr><tr><td align="center" valign="top">-</td><td>the only allowable characters in <b>poem</b> will be upper and lowercase characters ('a'-'z' and 'A'-'Z') and the space character (' ').</td></tr><tr><td align="center" valign="top">-</td><td>there will be only legal words in <b>poem</b></td></tr><tr><td colspan="2"><h3>Examples</h3></td></tr><tr><td align="center" nowrap="true">0)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>{&quot;I hope this problem&quot;,
+ &quot;is a whole lot better than&quot;,
+ &quot;this stupid haiku&quot;}</pre></td></tr></table></td></tr><tr><td><pre>Returns: &quot;abc&quot;</pre></td></tr><tr><td><table><tr><td colspan="2">Doesn't even conceivably rhyme.</td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">1)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>{&quot;     &quot;,
+ &quot;Measure your height&quot;,
+ &quot;AND WEIGHT      &quot;,
+ &quot;said the doctor&quot;,
+ &quot;&quot;,
+ &quot;And make sure to take your pills&quot;,
+ &quot;   to   cure   your    ills&quot;,
+ &quot;Every&quot;,
+ &quot;DAY&quot;}</pre></td></tr></table></td></tr><tr><td><pre>Returns: &quot; aab ccde&quot;</pre></td></tr><tr><td><table><tr><td colspan="2">Even though &quot;height&quot; and &quot;weight&quot; don't actually rhyme in English, they do by the rules laid out above.</td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">2)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>{&quot;One bright day in the middle of the night&quot;,
+ &quot;Two dead boys got up to fight&quot;,
+ &quot;Back to back they faced each other&quot;,
+ &quot;Drew their swords and shot each other&quot;,
+ &quot;&quot;,
+ &quot;A deaf policeman heard the noise&quot;,
+ &quot;And came to arrest the two dead boys&quot;,
+ &quot;And if you dont believe this lie is true&quot;,
+ &quot;Ask the blind man he saw it too&quot;}</pre></td></tr></table></td></tr><tr><td><pre>Returns: &quot;aabb cdef&quot;</pre></td></tr><tr><td></td></tr></table></td></tr><tr><td align="center" nowrap="true">3)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>{&quot;&quot;,
+ &quot;&quot;,
+ &quot;&quot;,
+ &quot;&quot;}</pre></td></tr></table></td></tr><tr><td><pre>Returns: &quot;    &quot;</pre></td></tr><tr><td><table><tr><td colspan="2">Four lines from the mind of a blank poet.</td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">4)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>{&quot;This poem has uppercase letters&quot;,
+ &quot;In its rhyme scheme&quot;,
+ &quot;Alpha&quot;, &quot;Blaster&quot;, &quot;Cat&quot;, &quot;Desert&quot;, &quot;Elephant&quot;, &quot;Frog&quot;, &quot;Gulch&quot;, 
+ &quot;Horse&quot;, &quot;Ireland&quot;, &quot;Jam&quot;, &quot;Krispy Kreme&quot;, &quot;Loofah&quot;, &quot;Moo&quot;, &quot;Narf&quot;,
+ &quot;Old&quot;, &quot;Pink&quot;, &quot;Quash&quot;, &quot;Rainbow&quot;, &quot;Star&quot;, &quot;Tour&quot;, &quot;Uvula&quot;, &quot;Very&quot;,
+ &quot;Will&quot;, &quot;Xmas&quot;, &quot;Young&quot;, &quot;Zed&quot;, &quot;deception&quot;, &quot;comic&quot;, &quot;grout&quot;,
+ &quot;oval&quot;, &quot;cable&quot;, &quot;rob&quot;, &quot;steal&quot;, &quot;steel&quot;, &quot;weak&quot;}</pre></td></tr></table></td></tr><tr><td><pre>Returns: &quot;abcdefghibjkblmnopqrstcuvwxyzABCbDEFG&quot;</pre></td></tr><tr><td></td></tr></table></td></tr><tr><td align="center" nowrap="true">5)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>{&quot; &quot;,
+ &quot;     &quot;,
+ &quot;This poem&quot;,
+ &quot;         &quot;,
+ &quot; &quot;,
+ &quot; &quot;,
+ &quot;&quot;,
+ &quot;Has lots of blank lines&quot;,
+ &quot; &quot;,
+ &quot;      &quot;,
+ &quot;                                            &quot;,
+ &quot;         &quot;,
+ &quot; &quot;,
+ &quot;              &quot;,
+ &quot;                                                  &quot;,
+ &quot;  in      it           &quot;}</pre></td></tr></table></td></tr><tr><td><pre>Returns: &quot;  a    b       c&quot;</pre></td></tr><tr><td></td></tr></table></td></tr><tr><td align="center" nowrap="true">6)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>{&quot;too bad   your&quot;,
+ &quot;     solution went   sour&quot;}</pre></td></tr></table></td></tr><tr><td><pre>Returns: &quot;aa&quot;</pre></td></tr><tr><td></td></tr></table></td></tr></table><p>This problem statement is the exclusive and proprietary property of TopCoder, Inc.  Any unauthorized use or reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited.  (c)2003, TopCoder, Inc.  All rights reserved.  </p></body></html>
