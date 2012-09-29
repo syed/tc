@@ -1,0 +1,138 @@
+<html><head><title>Centipede</title></head><body  ><table><tr><td colspan="2"><h3>Problem Statement</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><p>
+Centipede is a classic computer game where the main feature is a centipede
+moving horizontally across the screen. When it bumps into an obstacle,
+it changes direction and moves down one row.
+The centipede consist of 10 segments. The first segment is the head, while
+the remaining segments make up the tail. The second segment
+will be located where the head was one time unit ago, the third segment
+where it was two time units ago, etc. Several segments might share the same location at
+the same time, see example 0.
+</p>
+
+<p>
+When the centipede starts (at time 0), or has just completed a cycle (see below), it will
+occupy the leftmost 10 free squares in the first row. The head
+is in the rightmost of these squares, and the horizontal direction is right.
+Every time unit, the centipede moves one square in its current horizontal direction if possible.
+If this is not possible due to an obstacle, it moves one square down and changes direction (from
+right to left or from left to right). If this isn't possible either, it only changes direction (and doesn't move horizontally at all, see
+example 0).
+</p>
+
+<p>
+When the centipede bumps into an obstacle on the last row, it will move down
+out of the screen. In the same time unit as the last segment
+leaves the screen, the <i>whole</i> centipede will reappear on the first row.
+We say that the centipede has completed a <i>cycle</i>, and that the time unit when
+this happens for the first time is the <i>cycle length</i>. You may assume that
+given enough time, the centipede will always be able to complete a cycle. That is,
+it will never get stuck.
+</p>
+
+<p>
+Given a screen layout containing where the obstacles are, you are to compute the
+location of the centipede after a given number of
+time units. This number may be very big, see example 4.
+Obstacles are marked with a '#' on the layout. The first and last column in each row will
+always be an obstacle, and the first row will contain no other obstacle.
+Below to the left is an example of a screen layout (quotes for clarity only),
+while below to the right is the same layout with a centipede trace, marking all the squares
+that some part of the centipede will visit.
+</p>
+
+<pre>
+&quot;#                #&quot;            &quot;xxxxxxxxxxxxxxxxx&quot;
+&quot;# #      #       #&quot;            &quot; #      #xxxxxxxx&quot;
+&quot;#   #    #   #   #&quot;            &quot;   #    #xxx#    &quot;
+&quot;#           #    #&quot;            &quot;         xx#     &quot;
+&quot;#   ##         # #&quot;            &quot;   ##xxxxxx   #  &quot;
+&quot;# #      ##      #&quot;            &quot; #   xxx##       &quot;
+&quot;#    #           #&quot;            &quot;    #xxx         &quot;
+&quot;#                #&quot;            &quot;     xxxxxxxxxxxx&quot;
+</pre>
+
+<p>
+Create a class Centipede containing the method simulate which takes
+a vector &lt;string&gt; <b>screenLayout</b> containing the layout in the format
+described above, and an int <b>timeUnits</b>, the number
+of time units to simulate. The method should return a vector &lt;string&gt;
+containing the same layout, except that the squares which are occupied
+by a centipede segment after <b>timeUnits</b> time units should be changed
+to a lowercase 'x'.
+</p></td></tr><tr><td colspan="2"><h3>Definition</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td>Class:</td><td>Centipede</td></tr><tr><td>Method:</td><td>simulate</td></tr><tr><td>Parameters:</td><td>vector &lt;string&gt;, int</td></tr><tr><td>Returns:</td><td>vector &lt;string&gt;</td></tr><tr><td>Method signature:</td><td>vector &lt;string&gt; simulate(vector &lt;string&gt; screenLayout, int timeUnits)</td></tr><tr><td colspan="2">(be sure your method is public)</td></tr></table></td></tr><tr><td>&#160;&#160;&#160;&#160;</td></tr><tr><td></td></tr><tr><td colspan="2"><h3>Notes</h3></td></tr><tr><td align="center" valign="top">-</td><td>Several segments might share the same location at the same time, see example 0.</td></tr><tr><td colspan="2"><h3>Constraints</h3></td></tr><tr><td align="center" valign="top">-</td><td><b>screenLayout</b> will contain between 1 and 50 elements, inclusive.</td></tr><tr><td align="center" valign="top">-</td><td>Each element in <b>screenLayout</b> will contain between 12 and 50 characters, inclusive.</td></tr><tr><td align="center" valign="top">-</td><td>All elements in <b>screenLayout</b> will contain the same number of characters.</td></tr><tr><td align="center" valign="top">-</td><td>Each element in <b>screenLayout</b> will only contain the characters ' ' and '#'.</td></tr><tr><td align="center" valign="top">-</td><td>The first and last character in each element in <b>screenLayout</b> will be '#'.</td></tr><tr><td align="center" valign="top">-</td><td>All characters in the first element in <b>screenLayout</b>, except for the first and last, will be ' '.</td></tr><tr><td align="center" valign="top">-</td><td>If given enough time, the centipede will be able to complete a cycle.</td></tr><tr><td align="center" valign="top">-</td><td><b>timeUnits</b> will be between 0 and 1000000000 (a billion), inclusive.</td></tr><tr><td colspan="2"><h3>Examples</h3></td></tr><tr><td align="center" nowrap="true">0)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>{&quot;#                #&quot;,
+ &quot;# #      #       #&quot;,
+ &quot;#   #    #   #   #&quot;,
+ &quot;#           #    #&quot;,
+ &quot;#   ##         # #&quot;,
+ &quot;# #      ##      #&quot;,
+ &quot;#    #           #&quot;,
+ &quot;#                #&quot;}</pre></td></tr><tr><td><pre>24</pre></td></tr></table></td></tr><tr><td><pre>Returns: 
+{ &quot;#                #&quot;,
+  &quot;# #      #       #&quot;,
+  &quot;#   #    #xxx#   #&quot;,
+  &quot;#         xx#    #&quot;,
+  &quot;#   ##   xxx   # #&quot;,
+  &quot;# #      ##      #&quot;,
+  &quot;#    #           #&quot;,
+  &quot;#                #&quot; }</pre></td></tr><tr><td><table><tr><td colspan="2">This is the map shown in the problem statement. Note that only 8 segments
+of the centipede are visible. This is because on row 3 the centipede changes
+direction without moving down a row and thus overlaps itself.</td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">1)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>{&quot;#          #&quot;,
+ &quot;#          #&quot;}</pre></td></tr><tr><td><pre>16</pre></td></tr></table></td></tr><tr><td><pre>Returns: { &quot;#          #&quot;,  &quot;#xxxx      #&quot; }</pre></td></tr><tr><td><table><tr><td colspan="2">Only the last four segments are visible here.</td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">2)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>{&quot;#            #&quot;,
+ &quot;#     #      #&quot;,
+ &quot;#            #&quot;}</pre></td></tr><tr><td><pre>24</pre></td></tr></table></td></tr><tr><td><pre>Returns: { &quot;#xxxxxxxxxx  #&quot;,  &quot;#     #      #&quot;,  &quot;#            #&quot; }</pre></td></tr><tr><td><table><tr><td colspan="2">The centipede has just finished its first cycle and appears at its starting position again.
+</td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">3)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>{&quot;#                        #&quot;,
+ &quot;#      #                 #&quot;,
+ &quot;#                 #      #&quot;,
+ &quot;#  ##    #               #&quot;,
+ &quot;#              #    #    #&quot;,
+ &quot;#     #                  #&quot;,
+ &quot;#       #          #     #&quot;,
+ &quot;#          #             #&quot;,
+ &quot;#              #         #&quot;}</pre></td></tr><tr><td><pre>74607</pre></td></tr></table></td></tr><tr><td><pre>Returns: 
+{ &quot;#                        #&quot;,
+  &quot;#      #                 #&quot;,
+  &quot;#                 #      #&quot;,
+  &quot;#  ##    #               #&quot;,
+  &quot;#              #    #    #&quot;,
+  &quot;#     #xxxxxxx           #&quot;,
+  &quot;#      x#          #     #&quot;,
+  &quot;#     xx   #             #&quot;,
+  &quot;#              #         #&quot; }</pre></td></tr><tr><td><table><tr><td colspan="2">The cycle length is 94 here, so in 74607 time units the centipede will have completed 793
+cycles and have moved 65 time units in the current cycle.</td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">4)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>{&quot;#                            #&quot;,
+ &quot;#   #     # # #           # ##&quot;,
+ &quot;#   #       #                #&quot;,
+ &quot;#                          # #&quot;,
+ &quot;#                   #        #&quot;,
+ &quot;##    #           #        # #&quot;,
+ &quot;#    #    #   #              #&quot;,
+ &quot;#  #    #  #          #      #&quot;,
+ &quot;#     #   #       #          #&quot;,
+ &quot;#                            #&quot;,
+ &quot;#     #        #         #   #&quot;,
+ &quot;#   ###          #        #  #&quot;,
+ &quot;#           ##             # #&quot;,
+ &quot;#                     #      #&quot;,
+ &quot;##           #               #&quot;,
+ &quot;#     #     #   #     # #    #&quot;,
+ &quot;#          #  ##   #         #&quot;,
+ &quot;#                    #       #&quot;,
+ &quot;#                    #  #    #&quot;}</pre></td></tr><tr><td><pre>598273167</pre></td></tr></table></td></tr><tr><td><pre>Returns: 
+{ &quot;#                            #&quot;,
+  &quot;#   #     # # #           # ##&quot;,
+  &quot;#   #       #                #&quot;,
+  &quot;#                          # #&quot;,
+  &quot;#                   #        #&quot;,
+  &quot;##    #           #        # #&quot;,
+  &quot;#    #    #   #              #&quot;,
+  &quot;#  #    #  #          #      #&quot;,
+  &quot;#     #   #       #          #&quot;,
+  &quot;#                         xxx#&quot;,
+  &quot;#     #        #         #xxx#&quot;,
+  &quot;#   ###          #        # x#&quot;,
+  &quot;#           ##             # #&quot;,
+  &quot;#                     #      #&quot;,
+  &quot;##           #               #&quot;,
+  &quot;#     #     #   #     # #    #&quot;,
+  &quot;#          #  ##   #         #&quot;,
+  &quot;#                    #       #&quot;,
+  &quot;#                    #  #    #&quot; }</pre></td></tr><tr><td><table><tr><td colspan="2">Watch out for time out!</td></tr></table></td></tr></table></td></tr></table><p>This problem statement is the exclusive and proprietary property of TopCoder, Inc.  Any unauthorized use or reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited.  (c)2003, TopCoder, Inc.  All rights reserved.  </p></body></html>
