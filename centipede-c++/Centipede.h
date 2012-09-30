@@ -15,19 +15,7 @@ using namespace std;
 
 #define SZ 10
 
-void updateDir( int dx, int dy, vector<pair<int,int> >&dir )
-{
-	FOR(i,0 , dir.size()-1)
-	{
-		dir[i] = dir[i+1];
-	}
-	int sz = dir.size();
-
-	dir[sz-1].first = dx;
-	dir[sz-1].second = dy;
-}
-
-void updateCenti( vector<pair<int,int> > &centi ,vector<pair<int,int> > &dir, int x , int y , int d)
+void updateCenti( vector<pair<int,int> > &centi ,int d,  bool flex)
 {
 	int dx,dy;
 
@@ -36,12 +24,10 @@ void updateCenti( vector<pair<int,int> > &centi ,vector<pair<int,int> > &dir, in
 	else
 		dx= 0 ,dy = d;
 
-	updateDir(dx,dy,dir);
-	FOR(i,0,centi.size())
-	{
-		centi[i].first += dir[i].first;
-		centi[i].second += dir[i].second;
-	}
+	FOR(i,0,centi.size()-1)
+		centi[i] = centi[i+1];
+	if ( !flex )
+		centi[centi.size()-1].first += dx,centi[centi.size()-1].second += dy;
 }
 
 void print_snake(vector<string> pos, vector<pair<int,int> > centi, int d)
@@ -50,7 +36,12 @@ void print_snake(vector<string> pos, vector<pair<int,int> > centi, int d)
 	FOR(i,0,centi.size())
 	{
 		if ( centi[i].first < ht)
-			pos[centi[i].first][centi[i].second] = '~';
+		{
+			if ( pos[centi[i].first][centi[i].second] ==  '~')
+				pos[centi[i].first][centi[i].second] = '=';
+			else
+				pos[centi[i].first][centi[i].second] = '~';
+		}
 		printf("( %d,%d ) ", centi[i].first,centi[i].second);
 	}
 	printf("\nd %d \n",d);
@@ -82,35 +73,38 @@ bool is_empty( vector<string> screen,int x, int y, int d)
 		return false;
 	return true;
 }
+
 class Centipede {
 
 	public: vector<string> simulate(vector<string> screen, int timeUnits) {
 		vector< pair<int,int> > centi(10,make_pair(0,0));
-		vector<pair<int,int> > dir(10,make_pair(0,0));
-
 
 		FOR(i,0,10)
-		{
 			centi[i] = make_pair(0,i+1); // initial position of centipede
-			dir[i] =  make_pair(0,1);
-		}
 
 		int x=0,y=10,d=1;
-		vector<string> pos;
 		int cycle_len=0;
+		bool flex = false;
 
 		while(timeUnits)
 		{
 
 			if (is_empty(screen,x,y,d))
-				updateCenti( centi, dir, x,y, d );
+			{
+				updateCenti( centi,  d ,flex);
+				flex=false;
+			}
 			else if(is_empty(screen,x+1,y,0))
 			{
 				d=d*-1;
-				updateCenti(centi, dir,x+1,y,0 );
+				updateCenti(centi, 0 ,flex );
+				flex=false;
 			}
 			else
+			{
 				d = d*-1;
+				flex=true;
+			}
 
 			timeUnits--;
 			cycle_len++;
@@ -119,21 +113,18 @@ class Centipede {
 			{
 				cout<<"Reset"<<endl;
 				FOR(i,0,centi.size())
-				{
 					centi[i] = make_pair(0,i+1); // initial position of centipede
-					dir[i] =  make_pair(0,1);
-				}
 				x = 0,y=10,d=1;
 				timeUnits = timeUnits % cycle_len;
 				printf("New time units %d\n",timeUnits);
 			}
 			print_snake(screen,centi,d);
 		}
-		pos = screen ;
-		FOR(i,0,centi.size())
-			if ( centi[i].first < pos.size())
-				pos[centi[i].first][centi[i].second] = 'x';
 
-		return pos;
+		FOR(i,0,centi.size())
+			if ( centi[i].first < screen.size())
+				screen[centi[i].first][centi[i].second] = 'x';
+
+		return screen;
 	}
 };
