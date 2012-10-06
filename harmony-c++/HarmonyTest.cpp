@@ -77,7 +77,7 @@ class HarmonyTest {
 };
 
 int main() {
-    for (int i = 2; i < 3; i++) {
+    for (int i = 0; i < 4; i++) {
         HarmonyTest test;
         test.runTest(i);
     }
