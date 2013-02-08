@@ -1,6 +1,5 @@
 eclipse/
-eclipse-cpp-indigo-SR2-incubation-linux-gtk.tar.gz
-.*.gz
+*.gz
 eclipse.zip
 tests/
 */Debug
@@ -8,3 +7,4 @@ tests/
 */.project
 */.settings
 .metadata
+eclimd.log

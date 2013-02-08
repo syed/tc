@@ -93,3 +93,14 @@ Sorting of vectors can be done by using `sort` we can have custom sort function:
 
     sort(scores.begin(),scores.end(),&sort_score);
 
+===================
+Links and Resources
+===================
+
+* `Modular arithematic <http://mathdude.quickanddirtytips.com/how-to-do-multiplication-and-division-in-modular-arithmetic.aspx>` and `Intro <http://mathdude.quickanddirtytips.com/what-is-modular-arithmetic.aspx>`
+ 
+================
+Useful Solutions
+================
+
+* SRM 565 Div3 divisiblesequence has examples of how to do modular division using Fermat's small theorem and inverse modulus
