@@ -105,4 +105,4 @@ Links and Resources
 Useful Solutions
 ================
 
-* SRM 565 Div3 divisiblesequence has examples of how to do modular division using Fermat's small theorem and inverse modulus
+* [SRM 565 Div3](divisiblesequence-c++/DivisibleSequence.h) divisiblesequence has examples of how to do modular division using Fermat's small theorem and inverse modulus
