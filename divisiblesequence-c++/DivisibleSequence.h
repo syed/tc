@@ -7,6 +7,7 @@
 #include <string>
 #include <vector>
 #include <cstdio>
+#include <cmath>
 using namespace std;
 
 #define FOR(i,s,e) for (int i = int(s); i != int(e); i++)
@@ -35,9 +36,7 @@ long long modPow(long long n, long long k)
     while( k )
     {
         if ( k %2 != 0 )
-        {
             res = (res * a) % MOD ;
-        }
 
         a = ((a * a )% MOD) ;
         k /= 2;
@@ -73,7 +72,7 @@ class DivisibleSequence {
     public: int count(int N, int H) {
                 vector<long long> factors;
                 long long ret=1;
-                for ( int i = 2 ; i <= N ; i++)
+                for ( int i = 2 ; i <= sqrt(N) ; i++)
                 {
                     int count = 0;
                     while( N % i == 0 )
@@ -87,7 +86,12 @@ class DivisibleSequence {
                         factors.push_back(count);
                     }
                 }
-
+               
+                /* It may so happen that we get a factor of form p1*p2 where p1,p2 are 
+                 * primes and p2 > sqrt(N) */ 
+                if( N>1 )
+                    factors.push_back(1);
+                
                 FOR(i, 0, factors.size())
                 {
                     //printf("n %lld r  = %d \n",H+factors[i]-1,factors[i] );
