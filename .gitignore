@@ -7,4 +7,5 @@ tests/
 */.project
 */.settings
 .metadata
+*/*.swp
 eclimd.log

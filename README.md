@@ -1,34 +1,35 @@
-=====
 Notes
 =====
 
-#####################################
 Clear `istringstream` & ostringstream
-#####################################
+-------------------------------------
 
 To clear istringseream::
-
+``` 
     istringstream in;
     in.str(row);
     in.clear()
     in.str(row2);
 
+``` 
+
 To clear ostringstream::
 
+``` 
     ostringstream out;
     out<<v1<<v2<<v3;
     out.str()
     //clear
     out.str('');
     out<<v1<<v2<<v3;
- 
+``` 
 
-##############################
 Find min and max in vector etc 
-##############################
+------------------------------
 
 use `min_element` and `max_element` ::
     
+``` 
     vector<int> v;
     v.push_back(1);
     v.push_back(3);
@@ -36,28 +37,30 @@ use `min_element` and `max_element` ::
 
     int min = min_element( v.begin(),v.end())
     int max = max_element( v.begin(),v.end())
+``` 
 
-##############
 Math Functions 
-##############
+--------------
 
 Floor and Ceiling functions::
     
-    #include<cmath>
+``` 
+    -include<cmath>
     
     ceil(x);
     floor(x);
     // x can be int , float , double return value will 
     // be same as the supplied arg
+``` 
 
    
-######################
 Custom sorting Sorting 
-######################
+----------------------
 
 
 Sorting of vectors can be done by using `sort` we can have custom sort function::
 
+``` 
     typedef struct team_order
     {
         int score;
@@ -92,14 +95,13 @@ Sorting of vectors can be done by using `sort` we can have custom sort function:
     //call sort with custom function
 
     sort(scores.begin(),scores.end(),&sort_score);
+``` 
 
-===================
 Links and Resources
 ===================
 
-* `Modular arithematic <http://mathdude.quickanddirtytips.com/how-to-do-multiplication-and-division-in-modular-arithmetic.aspx>` and `Intro <http://mathdude.quickanddirtytips.com/what-is-modular-arithmetic.aspx>`
+* [Modular arithematic](http://mathdude.quickanddirtytips.com/how-to-do-multiplication-and-division-in-modular-arithmetic.aspx>` and `Intro <http://mathdude.quickanddirtytips.com/what-is-modular-arithmetic.aspx)
  
-================
 Useful Solutions
 ================
 
