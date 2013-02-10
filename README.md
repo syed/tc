@@ -1,6 +1,9 @@
 Useful Solutions
 ================
 
+Math
+----
+
 * [SRM 565 Div3](divisiblesequence-c++/DivisibleSequence.h) has examples of how to do modular division using Fermat's small theorem and inverse modulus and integer factorization using the trial division method.
 
 Notes
