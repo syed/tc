@@ -32,7 +32,7 @@ double count(vector<int> cards, int n )
 
     while(cards[min_count] == cards[0])
        min_count++;
-    
+
     double p = double(min_count)/double(n);
     double q = 1.0 - p;
     return double(n)/double(min_count) + count(vector<int>(cards.begin()+1,cards.end()),n-1) - 1;
